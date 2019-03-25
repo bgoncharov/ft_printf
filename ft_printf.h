@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/24 16:13:24 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/24 23:27:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 void ft_printf(const char *format, ...);
 void flag_string(va_list valist);
 void flag_int(va_list valist);
-int flag_launcher(char flag);
-char *parse(const char *format);
+int converion_chars(char **format);
+char *parse(const char *format, va_list valist);
+int flag_chars(char **format);
 
 #endif
