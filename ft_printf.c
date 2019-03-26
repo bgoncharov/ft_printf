@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/25 16:12:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/25 22:18:39 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,26 @@
 **	colors, fd, i td..
 */
 
-void flag_string(va_list valist)
+t_format *new_fmt_struct()
 {
-	ft_putstr(va_arg(valist, char *));
+	t_format *fmt;
+
+	fmt = (t_format *)ft_memalloc(sizeof(t_format));
+	fmt->conv = 0;
+	fmt->flags = 0;
+	fmt->width = 0;
+	fmt->precision = 0;
+	return (fmt);
 }
 
-void flag_int(va_list valist)
+char *flag_string(va_list valist)
 {
-	ft_putnbr(va_arg(valist, int));
+	return (va_arg(valist, char *));
+}
+
+char *flag_int(va_list valist)
+{
+	return (ft_itoa(va_arg(valist, int)));
 }
 
 char *flag_percent()
@@ -45,19 +57,23 @@ char *flag_percent()
 	return (ft_strdup("%"));
 }
 
-static char *parse(const char *format, va_list valist)
+static char *parse(char **format, va_list valist)
 {
 	t_format *fmt_struct;
-	static void (*p[15])();
+	static char *(*p[15])();
 
+	fmt_struct = new_fmt_struct();
 	p[0] = flag_string;
 	p[3] = flag_int;
 	p[5] = flag_int;
 	p[14] = flag_percent;
 
-	flag_chars(format);
-	field_width(format);
-	fmt_struct->conv = p[converion_chars(format)](valist);
+	flag_chars(format, fmt_struct);
+	width_precision(format, fmt_struct);
+	printf("flags: %s\n", ft_itoa_base(fmt_struct->flags, 2));
+	printf("width: %d\n", fmt_struct->width);
+	printf("precision: %d\n\n", fmt_struct->precision);
+	fmt_struct->conv = p[conversion_chars(format)](valist);
 	return (fmt_struct->conv);
 }
 
@@ -70,7 +86,7 @@ void ft_printf(const char *format, ...)
 	while ((p_str = ft_strchr(format, '%')))
 	{
 		format += write(1, format, p_str - format) + 1;
-		p_str = parse((char*)&format, valist);
+		p_str = parse((char**)&format, valist);
 		ft_putstr(p_str);
 		ft_strdel(&p_str);
 	}
