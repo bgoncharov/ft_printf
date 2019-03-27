@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/25 21:11:16 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:12:43 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 */
 int conversion_chars(char **format)
 {
-	const char *flags;
-    char *index;
+	const char	*flags;
+    char 		*index;
 
 	flags = "sSpdDioOuUxXcC%";
-	if ((index = ft_strchr(flags, **format)))
+	if (*format && (index = ft_strchr(flags, **format)))
     {
         (*format)++;
 		return (index - flags);
@@ -31,18 +31,51 @@ int conversion_chars(char **format)
 	return (-1);
 }
 
-void width_precision(char **format, t_format *fmt_struct)
+/*
+** This function will take lenght of the conversion
+*/
+
+void get_size_flag(const char **format, t_format *fmt_struct)
 {
-	if (ft_isdigit(**format))
+	const char	*flags;
+	char		*index;
+
+	flags = "hHlLjz";
+	if (*format && (index = ft_strchr(flags, **format)))
 	{
-		fmt_struct->width = ft_atoi(*format);
-		*format += ft_getnbsize(fmt_struct->width);
+		if (**format == 'h' && *(*format + 1) == 'h')
+		{
+			fmt_struct->lenght = 'H';
+			++(*format);
+		}
+		else if (**format == 'l' && *(format + 1) == 'l')
+		{
+			fmt_struct->lenght = 'L';
+			++(*format);
+		}
+		else
+			fmt_struct->lenght = *index;
+		++(*format);
 	}
-	if (**format == '.')
+}
+
+/*
+** Using atoi function grab the number for width and precision
+*/
+void get_width_precis(char **format, t_format *fmt_struct)
+{ 
+	if (*format && ft_isdigit(**format))
+	{
+		fmt_struct->width = ft_atoi(*(char **)format);
+		//*format += ft_getnbsize(fmt_struct->width);
+		while (*format && ft_isdigit(**format))
+			++(*format);
+	}
+	if (*format && **format == '.')
 	{
 		++(*format);
-		fmt_struct->precision = ft_atoi(*format);
-		while (ft_isdigit(**format))
+		fmt_struct->precision = ft_atoi(*(char**)format);
+		while (*format && ft_isdigit(**format))
 			++(*format);
 	}
 }

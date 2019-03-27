@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 18:48:40 by bogoncha          #+#    #+#              #
-#    Updated: 2019/03/26 18:08:34 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/03/27 16:43:40 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c \
 	 ft_putchar.c ft_putstr.c ft_itoa.c ft_getnbsize.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
 	 ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
 	 ft_lstiter.c ft_lstmap.c ft_isblank.c ft_str_is_alpha.c ft_str_is_lowercase.c ft_str_is_numeric.c \
-	 ft_str_is_printable.c ft_str_is_uppercase.c ft_strlowcase.c ft_strupcase.c ft_size_of_word.c ft_itoa_base.c
+	 ft_str_is_printable.c ft_str_is_uppercase.c ft_strlowcase.c ft_strupcase.c ft_size_of_word.c \
+	 ft_itoa_base.c ft_dstrlen.o
 
 OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o \
 	 ft_isalpha.o ft_isascii.o ft_isdigit.o ft_islower.o ft_isprint.o \
@@ -42,7 +43,8 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o \
 	 ft_putchar.o ft_putstr.o ft_itoa.o ft_getnbsize.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o \
 	 ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o \
 	 ft_lstiter.o ft_lstmap.o ft_isblank.o ft_str_is_alpha.o ft_str_is_lowercase.o ft_str_is_numeric.o \
-	 ft_str_is_printable.o ft_str_is_uppercase.o ft_strlowcase.o ft_strupcase.o ft_size_of_word.o ft_itoa_base.o
+	 ft_str_is_printable.o ft_str_is_uppercase.o ft_strlowcase.o ft_strupcase.o ft_size_of_word.o \
+	 ft_itoa_base.o ft_dstrlen.o
 
 INCLUDES=./
 

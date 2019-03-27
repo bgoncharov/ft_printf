@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/26 17:30:10 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:40:32 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@
 **	must manage:	minimum field-width and precision
 **	flags:			hh, h, l, ll
 **
+**	.___________________________________.
+**	|conversion	|	length		|flags	|
+**	|-----------+---------------+-------|
+**	|	c		|				|		|
+**	|	s		|				|		|
+**	|	p		|				|		|
+**	|-----------+---------------+-------|
+**	|	d		| h, hh, l, ll	| 0-+s	|
+**	|	i		| h, hh, l, ll	| 0-+s	|
+**	|	o		| h, hh, l, ll	| 0-+s	|
+**	|	u		| h, hh, l, ll	| 0-+s	|
+**	|	x		| h, hh, l, ll	| 0-+s	|
+**	|	X		| h, hh, l, ll	| 0-+s	|
+**
 ** Bonuses :
 **	conversions:	eE, fF, gG, aA, n
 **	flags:			*, %, L, '
@@ -30,65 +44,95 @@
 **	colors, fd, i td..
 */
 
-t_format *new_fmt_struct()
+t_format *init()
 {
 	t_format *fmt;
 
 	fmt = (t_format *)ft_memalloc(sizeof(t_format));
-	fmt->conv = 0;
+	fmt->conv = -1;
 	fmt->flags = 0;
 	fmt->width = 0;
-	fmt->precision = 0;
+	fmt->precision = -1;
+	fmt->lenght = 0;
 	return (fmt);
 }
 
-char *flag_string(va_list valist)
+static char *dispatch(t_format *fmt_struct, va_list valist)
 {
-	return (va_arg(valist, char *));
-}
+	static char *(*p[15])();
 
-char *flag_int(va_list valist)
-{
-	return (ft_itoa(va_arg(valist, int)));
-}
-
-char *flag_percent()
-{
-	return (ft_strdup("%"));
+	p[0] = flag_char;
+	p[1] = flag_char;
+	p[2] = flag_string;
+	p[3] = flag_string;
+	p[4] = flag_int;
+	p[5] = flag_int;
+	p[6] = flag_int;
+	p[7] = flag_string;
+	p[8] = flag_string;
+	p[9] = flag_string;
+	p[10] = flag_string;
+	p[11] = flag_string;
+	p[12] = flag_string;
+	p[13] = flag_string;
+	p[14] = flag_percent;
+	if (fmt_struct->conv != -1)
+		return (p[fmt_struct->conv](fmt_struct, valist));
+	return (0);
 }
 
 static char *parse(char **format, va_list valist)
 {
 	t_format *fmt_struct;
-	static char *(*p[15])();
-
-	fmt_struct = new_fmt_struct();
-	p[0] = flag_string;
-	p[3] = flag_int;
-	p[5] = flag_int;
-	p[14] = flag_percent;
-
+	char *ret;
+	
+	fmt_struct = init();
 	flag_chars(format, fmt_struct);
 	width_precision(format, fmt_struct);
-	printf("flags: %s\n", ft_itoa_base(fmt_struct->flags, 2));
-	printf("width: %d\n", fmt_struct->width);
-	printf("precision: %d\n\n", fmt_struct->precision);
-	fmt_struct->conv = p[conversion_chars(format)](valist);
-	return (fmt_struct->conv);
+	get_size_flag(format, fmt_struct);
+	fmt_struct->conv = pconversion_chars(format);
+	ret = dispatch(fmt_struct, valist);
+	free(fmt_struct);
+	return (ret);
 }
 
-void ft_printf(const char *format, ...)
+static size_t make_list(t_list **list, const char *format, va_list valist)
+{
+	char *sub;
+	size_t len;
+	size_t total_len;
+
+	total_len = 0;
+	while (format && *format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			sub = parse(&format, valist);
+			len = ft_strlen(sub);
+		}
+		else
+		{
+			len = ft_dstrlen(&format, '%');
+			len = ft_strndup(format, len); //TODO
+			format += len;
+		}
+		total_len += len;
+		ft_lstadd(list, ft_lstinit(sub, len)); //TODO
+	}
+	return (total_len);
+}
+
+int ft_printf(const char *format, ...)
 {
 	va_list valist;
-	char *p_str;
+	t_list *strings;
+	size_t totel_len;
 
 	va_start(valist, format);
-	while ((p_str = ft_strchr(format, '%')))
-	{
-		format += write(1, format, p_str - format) + 1;
-		p_str = parse((char**)&format, valist);
-		ft_putstr(p_str);
-		ft_strdel(&p_str);
-	}
-	write (1, format, ft_strlen(format));
+	strings = 0;
+	totel_len = make_list(&strings, format, valist);
+	ft_lstiter(strings, ft_lstpustr); //TODO
+	va_end(valist);
+	return (totel_len);
 }
