@@ -3,21 +3,21 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-void params(int strings, ...)
-{
-	va_list	valist;
-	int		i;
-	char	*str;
+// void params(int strings, ...)
+// {
+// 	va_list	valist;
+// 	int		i;
+// 	char	*str;
 
-	va_start(valist, strings);
-	i = 0;
-	while (i < strings)
-	{
-		(!(str = va_arg(valist, char *))) ? printf("(null)\n") : printf("%s\n", str);
-		++i;
-	}
-	va_end(valist);
-}
+// 	va_start(valist, strings);
+// 	i = 0;
+// 	while (i < strings)
+// 	{
+// 		(!(str = va_arg(valist, char *))) ? printf("(null)\n") : printf("%s\n", str);
+// 		++i;
+// 	}
+// 	va_end(valist);
+// }
 
 int	main(void)
 {

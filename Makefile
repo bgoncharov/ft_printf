@@ -6,31 +6,36 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/03/25 00:00:19 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/03/26 18:05:17 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-L_NAME = libft;
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 
-HEADER = ft_printf.h
+SRC = ft_printf.c parser.c main.c
 
-SRC = ft_printf.c
-
-OBJS = *.o
+OBJS = ft_printf.o parser.o main.o
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAGS) -I$(HEADER) -c $(SRC)
+test: $(NAME) main.o
+	@echo "\t\x1b[92;4mTest file compiled!\x1b[0m"
+
+$(NAME): lib
+	@gcc libft/libft.a $(SRC) -o test
+
+lib:
+	@make -C libft
+	@echo "\t\x1b[92;4mLibft Done!\x1b[0m"
 
 clean:
-	/bin/rm/ -f $(OBJS)
+	@/bin/rm -rf $(OBJS)
+	@make -C libft/ clean
 
-fclean:
-	/bin/rm -f $(NAME)
+fclean: clean
+	@/bin/rm -rf test
+	@make -C libft/ fclean
 
-re:
-	fclean all
+re: fclean all
