@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/27 14:12:43 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/28 23:36:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 ** represents the index of their function in the
 ** function pointer
 */
-int conversion_chars(char **format)
+int conversion_chars(const char **format)
 {
 	const char	*flags;
     char 		*index;
 
-	flags = "sSpdDioOuUxXcC%";
+	flags = "cCsSdDioOuUxXp%";
 	if (*format && (index = ft_strchr(flags, **format)))
     {
         (*format)++;
@@ -48,7 +48,7 @@ void get_size_flag(const char **format, t_format *fmt_struct)
 			fmt_struct->lenght = 'H';
 			++(*format);
 		}
-		else if (**format == 'l' && *(format + 1) == 'l')
+		else if (**format == 'l' && *(*format + 1) == 'l')
 		{
 			fmt_struct->lenght = 'L';
 			++(*format);
@@ -62,7 +62,7 @@ void get_size_flag(const char **format, t_format *fmt_struct)
 /*
 ** Using atoi function grab the number for width and precision
 */
-void get_width_precis(char **format, t_format *fmt_struct)
+void get_width_precis(const char **format, t_format *fmt_struct)
 { 
 	if (*format && ft_isdigit(**format))
 	{
@@ -84,7 +84,7 @@ void get_width_precis(char **format, t_format *fmt_struct)
 ** The position of the characters in the flag string
 ** represent the index of their bitin the ret variable.
 */
-void flag_chars(char **format, t_format *fmt_struct)
+void flag_chars(const char **format, t_format *fmt_struct)
 {
 	const char *flags;
 	int ret;

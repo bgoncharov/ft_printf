@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_lstputstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 18:18:00 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:00:07 by bogoncha         ###   ########.fr       */
+/*   Created: 2019/03/28 22:58:14 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/03/28 22:58:28 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void				ft_lstputstr(t_list *item)
 {
-	new->next = *alst;
-	*alst = new;
-}
-
-void	ft_lstadd_tail(t_list **alst, t_list *item)
-{
-	t_list **cur;
-
-	cur = alst;
-	if (!*cur)
-	{
-		*cur = item;
-		return ;
-	}
-	while ((*cur)->next)
-		cur = &(*cur)->next;
-	(*cur)->next = item;
+	if (item)
+		ft_putstr((char *)item->content);
 }

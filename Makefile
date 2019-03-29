@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/03/26 18:19:36 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/03/28 23:01:20 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c parser.c main.c
+SRC = ft_printf.c parser.c char_string.c main.c
 
-OBJS = ft_printf.o parser.o main.o
+OBJS = ft_printf.o parser.o char_string.o main.o
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/27 16:40:32 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/28 23:32:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,26 @@ static char *dispatch(t_format *fmt_struct, va_list valist)
 	return (0);
 }
 
-static char *parse(char **format, va_list valist)
+static char *parse(const char **format, va_list valist)
 {
 	t_format *fmt_struct;
 	char *ret;
 	
 	fmt_struct = init();
 	flag_chars(format, fmt_struct);
-	width_precision(format, fmt_struct);
+	get_width_precis(format, fmt_struct);
 	get_size_flag(format, fmt_struct);
-	fmt_struct->conv = pconversion_chars(format);
+	fmt_struct->conv = conversion_chars(format);
 	ret = dispatch(fmt_struct, valist);
 	free(fmt_struct);
 	return (ret);
 }
 
-static size_t make_list(t_list **list, const char *format, va_list valist)
+static size_t		make_list(t_list **list, const char *format, va_list valist)
 {
-	char *sub;
-	size_t len;
-	size_t total_len;
+	char	*sub;
+	size_t	len;
+	size_t	total_len;
 
 	total_len = 0;
 	while (format && *format)
@@ -113,26 +113,26 @@ static size_t make_list(t_list **list, const char *format, va_list valist)
 		}
 		else
 		{
-			len = ft_dstrlen(&format, '%');
-			len = ft_strndup(format, len); //TODO
+			len = ft_dstrlen(format, '%');
+			sub = ft_strndup(format, len);
 			format += len;
 		}
 		total_len += len;
-		ft_lstadd(list, ft_lstinit(sub, len)); //TODO
+		ft_lstadd_tail(list, ft_lstinit(sub, len));
 	}
 	return (total_len);
 }
 
-int ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
-	va_list valist;
-	t_list *strings;
-	size_t totel_len;
+	va_list		valist;
+	t_list		*strings;
+	size_t		total_len;
 
 	va_start(valist, format);
 	strings = 0;
-	totel_len = make_list(&strings, format, valist);
-	ft_lstiter(strings, ft_lstpustr); //TODO
+	total_len = make_list(&strings, format, valist);
+	ft_lstiter(strings, ft_lstputstr);
 	va_end(valist);
-	return (totel_len);
+	return (total_len);
 }

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/27 15:41:28 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/28 22:55:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void print_params(t_format ftm_struct)
 /*
 ** correttly cut the string
 */
-static void cut_string(int precision, char **str)
+static void add_precision(int precision, char **str)
 {
 	int len;
 	char *new;
@@ -59,7 +59,7 @@ char *flag_string(t_format *fmt_struct, va_list valist)
 		str = ft_strdup("(null)");
 	else
 		str = ft_strdup(str);
-	cut_string(fmt_struct->precision, &str);
+	add_precision(fmt_struct->precision, &str);
 	return (str);
 }
 

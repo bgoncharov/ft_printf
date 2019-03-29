@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:04:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/02/23 11:03:53 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/28 23:03:17 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ char	*ft_strdup(const char *s)
 	}
 	s2[i] = '\0';
 	return (s2);
+}
+
+char	*ft_strndup(const char *s1, size_t len)
+{
+	char	*dup;
+
+	dup = ft_strnew(len);
+	return (dup ? ft_strncpy(dup, s1, len) : 0);
 }
