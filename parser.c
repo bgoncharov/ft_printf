@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:36:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 12:13:23 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void get_width_precis(const char **format, t_format *fmt_struct)
 ** The position of the characters in the flag string
 ** represent the index of their bitin the ret variable.
 */
-void flag_chars(const char **format, t_format *fmt_struct)
+void get_flags(const char **format, t_format *fmt_struct)
 {
 	const char *flags;
 	int ret;

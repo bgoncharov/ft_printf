@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:15:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 12:13:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char *flag_percent(t_format *fmt_struct);
 int conversion_chars(const char **format);
 static char *parse(const char **format, va_list valist);
 void get_width_precis(const char **format, t_format *fmt_struct);
-void flag_chars(const char **format, t_format *fmt_struct);
+void get_flags(const char **format, t_format *fmt_struct);
 void get_size_flag(const char **format, t_format *fmt_struct);
 
 static void add_precision(int precision, char **str);

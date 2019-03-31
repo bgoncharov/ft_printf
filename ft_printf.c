@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:32:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 12:13:12 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char *parse(const char **format, va_list valist)
 	char *ret;
 	
 	fmt_struct = init();
-	flag_chars(format, fmt_struct);
+	get_flags(format, fmt_struct);
 	get_width_precis(format, fmt_struct);
 	get_size_flag(format, fmt_struct);
 	fmt_struct->conv = conversion_chars(format);
