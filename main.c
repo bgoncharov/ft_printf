@@ -6,6 +6,7 @@
 int	main(void)
 {
 	//int		i;
+	char *ch = "Test string";
 
 	//i = 99;
 	//ft_printf("Hello, World!\n");

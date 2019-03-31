@@ -6,11 +6,43 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 12:13:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 16:07:09 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void print_params(t_format fmt_struct)
+{
+	char *convs;
+	char *flags;
+	int i;
+
+	convs = "cCsSDioOuUxXp%";
+	flags = "#0-+ ";
+	i = 0;
+	ft_putchar('%');
+	if (fmt_struct.flags)
+	{
+		while (i < 5)
+		{
+			if (1 << i && fmt_struct.flags)
+				ft_putchar(flags[i]);
+			i++;
+		}
+	}
+	if (fmt_struct.width)
+		ft_putnbr(fmt_struct.width);
+	if (fmt_struct.precision != -1)
+		{
+			ft_putchar('.');
+			ft_putnbr(fmt_struct.precision);
+		}
+	if (fmt_struct.lenght)
+		ft_putchar(fmt_struct.lenght);
+	ft_putchar(*(convs + fmt_struct.conv));
+	ft_putstr(":	");
+}
 
 /*
 ** The number of the character in the 'flags' string
@@ -67,7 +99,6 @@ void get_width_precis(const char **format, t_format *fmt_struct)
 	if (*format && ft_isdigit(**format))
 	{
 		fmt_struct->width = ft_atoi(*(char **)format);
-		//*format += ft_getnbsize(fmt_struct->width);
 		while (*format && ft_isdigit(**format))
 			++(*format);
 	}
@@ -77,6 +108,8 @@ void get_width_precis(const char **format, t_format *fmt_struct)
 		fmt_struct->precision = ft_atoi(*(char**)format);
 		while (*format && ft_isdigit(**format))
 			++(*format);
+		if (fmt_struct->precision < 0)
+			fmt_struct->precision = 0;
 	}
 }
 
@@ -88,15 +121,16 @@ void get_flags(const char **format, t_format *fmt_struct)
 {
 	const char *flags;
 	int ret;
+	const char *cur;
 
 	flags = "#0-+ ";
 	ret = 0;
-	while (ft_strchr(flags, **format))
+	while ((cur = ft_strchr(flags, **format)))
 	{
-        ret = ret | (1 << (ft_strchr(flags, **format) - flags));
+        ret = ret | (1 << (cur - flags));
 		(*format)++;
 	}
-    ret = ((ret & 0x6) == 0x6 ? (ret ^ 0x2) : ret);
-    ret = ((ret & 0x18) == 0x18 ? (ret ^ 0x10) : ret);
+    ret = ((ret & (ZERO | MINUS)) == (ZERO | MINUS) ? (ret ^ ZERO) : ret);
+    ret = ((ret & (SPACE | PLUS)) == (SPACE | PLUS) ? (ret ^ SPACE) : ret);
 	fmt_struct->flags = ret;
 }
