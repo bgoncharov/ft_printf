@@ -6,21 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 16:08:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 16:12:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// static void print_params(t_format ftm_struct)
-// {
-// 	printf("flagc: %x\n", ftm_struct.flags);
-// 	printf("width: %d\n", ftm_struct.width);
-// 	printf("precis: %d\n", ftm_struct.precision);
-// 	printf("lenght: %c\n", ftm_struct.lenght);
-// 	printf("conv: %d\n", ftm_struct.conv);
-// 	printf("\n");
-// }
 
 /*
 ** correttly cut the string

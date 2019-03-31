@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 12:13:12 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 16:23:30 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ static size_t		make_list(t_list **list, const char *format, va_list valist)
 		{
 			format++;
 			sub = parse(&format, valist);
+			if (!sub)
+				continue ;
 			len = ft_strlen(sub);
 		}
 		else
