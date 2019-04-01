@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:07:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 20:26:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ void				ft_lstputstr(t_list *item);
 void				ft_lstadd_tail(t_list **alst, t_list *item);
 char				*ft_strndup(const char *s1, size_t len);
 t_list				*ft_lstinit(void const *content, size_t content_size);
+char				*ft_strinit(size_t size, int c);
+int					ft_max(int a, int b);
+int					ft_min(int a, int b);
+long				ft_abs(long nb);
 
 #endif

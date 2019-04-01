@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 16:05:53 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 20:29:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void get_size_flag(const char **format, t_format *fmt_struct);
 static void add_precision(int precision, char **str);
 static void print_params(t_format ftm_struct);
 
+static char *format_nb(t_format *fmt, int nb);
 
 #endif

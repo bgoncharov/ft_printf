@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 16:12:31 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/03/31 20:30:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ char *flag_string(t_format *fmt_struct, va_list valist)
 	add_precision(fmt_struct->precision, &str);
 	add_width(fmt_struct->width, &str, (fmt_struct->flags & MINUS));
 	return (str);
-}
-
-char *flag_int(t_format *fmt_struct, va_list valist)
-{
-	//print_params(*fmt_struct);
-	return (ft_itoa(va_arg(valist, int)));
 }
 
 char *flag_percent(t_format *fmt_struct)
