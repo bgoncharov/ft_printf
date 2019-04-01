@@ -1,46 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   numbers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/04/01 15:48:18 by bogoncha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static char *format_nb(t_format *fmt, int nb)
+static char	*num_format(t_format *frmt, int num)
 {
-	int len;
-	char *str;
+	int		len;
+	char	*str;
 
-	len = ft_getnbsize(nb);
-	len = ((nb < 0) ? (len - 1) : len);
-	if (fmt->precision == 0 && nb == 0)
+	len = ft_getnbsize(num);
+	len = ((num < 0) ? (len - 1) : len);
+	if (frmt->precision == 0 && num == 0)
 		len = 0;
-	if (fmt->precision != -1)
-		{
-			if ((fmt->flags & (PLUS | SPACE)) || nb < 0)
-				++fmt->precision;
-			if (fmt->precision > fmt->width)
-				fmt->width = fmt->precision;
-		}
+	if (frmt->precision != -1)
+	{
+		if ((frmt->flags & (PLUS | SPACE)) || num < 0)
+			++frmt->precision;
+		if (frmt->precision > frmt->width)
+			frmt->width = frmt->precision;
+	}
 	else
 	{
-		fmt->width = ft_max(fmt->width, len);
-		if (((fmt->flags & (PLUS | SPACE)) || nb < 0) && fmt->width == len)
-			++fmt->width;
-		if (fmt->flags & ZERO)
-			fmt->precision = fmt->width;
+		frmt->width = ft_max(frmt->width, len);
+		if (((frmt->flags & (PLUS | SPACE)) || num < 0) && frmt->width == len)
+			++frmt->width;
+		if (frmt->flags & ZERO)
+			frmt->precision = frmt->width;
 	}
-	str = ft_strinit(fmt->width, ' ');
+	str = ft_strinitial(frmt->width, ' ');
 	ft_putstr("w: ");
-	ft_putnbr(fmt->width);
+	ft_putnbr(frmt->width);
 	ft_putstr(", p: ");
-	ft_putnbr(fmt->precision);
+	ft_putnbr(frmt->precision);
 	ft_putstr(", l: ");
 	ft_putnbr(len);
 	ft_putstr("	");
 	return (str);
 }
 
-char *flag_int(t_format *fmt_struct, va_list valist)
+char		*flg_int(t_format *frmt_struct, va_list args)
 {
-	char *str;
-	int nb;
+	char	*new;
+	int		num;
 
-	nb = va_arg(valist, int);
-	str = format_nb(fmt_struct, nb);
-	return (str);
+	num = va_arg(args, int);
+	new = num_format(frmt_struct, num);
+	return (new);
 }

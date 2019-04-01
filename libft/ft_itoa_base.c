@@ -1,9 +1,9 @@
 #include <stdlib.h>
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(long value, long base)
 {
 	long nbr;
-	int len;
+	long len;
 	char *str;
 	char b[17] = "0123456789ABCDEF";
 

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 16:23:30 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/01 15:52:22 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,63 +44,63 @@
 **	colors, fd, i td..
 */
 
-t_format *init()
+t_format		*initial()
 {
-	t_format *fmt;
+	t_format	*frmt;
 
-	fmt = (t_format *)ft_memalloc(sizeof(t_format));
-	fmt->conv = -1;
-	fmt->flags = 0;
-	fmt->width = 0;
-	fmt->precision = -1;
-	fmt->lenght = 0;
-	return (fmt);
+	frmt = (t_format *)ft_memalloc(sizeof(t_format));
+	frmt->conv = -1;
+	frmt->flags = 0;
+	frmt->width = 0;
+	frmt->precision = -1;
+	frmt->lenght = 0;
+	return (frmt);
 }
 
-static char *dispatch(t_format *fmt_struct, va_list valist)
+static char		*forward(t_format *format_struct, va_list args)
 {
-	static char *(*p[15])();
+	static char	*(*p[15])();
 
-	p[0] = flag_char;
-	p[1] = flag_char;
-	p[2] = flag_string;
-	p[3] = flag_string;
-	p[4] = flag_int;
-	p[5] = flag_int;
-	p[6] = flag_int;
-	p[7] = flag_string;
-	p[8] = flag_string;
-	p[9] = flag_string;
-	p[10] = flag_string;
-	p[11] = flag_string;
-	p[12] = flag_string;
-	p[13] = flag_string;
-	p[14] = flag_percent;
-	if (fmt_struct->conv != -1)
-		return (p[fmt_struct->conv](fmt_struct, valist));
+	p[0] = flg_char;
+	p[1] = flg_char;
+	p[2] = flg_str;
+	p[3] = flg_str;
+	p[4] = flg_int;
+	p[5] = flg_int;
+	p[6] = flg_int;
+	p[7] = flg_str;
+	p[8] = flg_str;
+	p[9] = flg_str;
+	p[10] = flg_str;
+	p[11] = flg_str;
+	p[12] = flg_str;
+	p[13] = flg_str;
+	p[14] = flg_percent;
+	if (format_struct->conv != -1)
+		return (p[format_struct->conv](format_struct, args));
 	return (0);
 }
 
-static char *parse(const char **format, va_list valist)
+static char		*parser(const char **format, va_list args)
 {
-	t_format *fmt_struct;
-	char *ret;
-	
-	fmt_struct = init();
-	get_flags(format, fmt_struct);
-	get_width_precis(format, fmt_struct);
-	get_size_flag(format, fmt_struct);
-	fmt_struct->conv = conversion_chars(format);
-	ret = dispatch(fmt_struct, valist);
-	free(fmt_struct);
+	t_format	*format_struct;
+	char		*ret;
+
+	format_struct = initial();
+	parse_flags(format, format_struct);
+	parse_width_precis(format, format_struct);
+	parse_size_flag(format, format_struct);
+	format_struct->conv = chars_conv(format);
+	ret = forward(format_struct, args);
+	free(format_struct);
 	return (ret);
 }
 
-static size_t		make_list(t_list **list, const char *format, va_list valist)
+static size_t	create_list(t_list **lst, const char *format, va_list args)
 {
-	char	*sub;
-	size_t	len;
-	size_t	total_len;
+	char		*new;
+	size_t		len;
+	size_t		total_len;
 
 	total_len = 0;
 	while (format && *format)
@@ -108,33 +108,33 @@ static size_t		make_list(t_list **list, const char *format, va_list valist)
 		if (*format == '%')
 		{
 			format++;
-			sub = parse(&format, valist);
-			if (!sub)
+			new = parser(&format, args);
+			if (!new)
 				continue ;
-			len = ft_strlen(sub);
+			len = ft_strlen(new);
 		}
 		else
 		{
 			len = ft_dstrlen(format, '%');
-			sub = ft_strndup(format, len);
+			new = ft_strndup(format, len);
 			format += len;
 		}
 		total_len += len;
-		ft_lstadd_tail(list, ft_lstinit(sub, len));
+		ft_lstadd_tail(lst, ft_lstinit(new, len));
 	}
 	return (total_len);
 }
 
-int					ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
-	va_list		valist;
-	t_list		*strings;
+	va_list		args;
+	t_list		*strs;
 	size_t		total_len;
 
-	va_start(valist, format);
-	strings = 0;
-	total_len = make_list(&strings, format, valist);
-	ft_lstiter(strings, ft_lstputstr);
-	va_end(valist);
+	va_start(args, format);
+	strs = 0;
+	total_len = create_list(&strs, format, args);
+	ft_lstiter(strs, ft_lstputstr);
+	va_end(args);
 	return (total_len);
 }

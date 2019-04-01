@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/31 20:29:45 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/01 15:41:49 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,33 @@
 # define PLUS 0x8
 # define SPACE 0x10
 
-typedef struct s_format
+typedef struct		s_format
 {
-	int conv;
-	unsigned char flags;
-	int width;
-	int precision;
-	char lenght;
-}				t_format;
+	int				conv;
+	unsigned char	flags;
+	int				width;
+	int				precision;
+	char			lenght;
+}					t_format;
 
-int ft_printf(const char *format, ...);
+int					ft_printf(const char *format, ...);
 
-// function pointer functions
-char *flag_string(t_format *fmt_struct, va_list valist);
-char *flag_int(t_format *fmt_struct, va_list valist);
-char *flag_percent(t_format *fmt_struct);
-char *flag_char(t_format *fmt_struct, va_list valist);
+/* function pointer functions */
+char				*flg_str(t_format *frmt_struct, va_list args);
+char				*flg_int(t_format *frmt_struct, va_list args);
+char				*flg_percent(t_format *frmt_struct);
+char				*flg_char(t_format *frmt_struct, va_list args);
 
-// parse functions
-int conversion_chars(const char **format);
-static char *parse(const char **format, va_list valist);
-void get_width_precis(const char **format, t_format *fmt_struct);
-void get_flags(const char **format, t_format *fmt_struct);
-void get_size_flag(const char **format, t_format *fmt_struct);
-static void add_precision(int precision, char **str);
-static void print_params(t_format ftm_struct);
+/* parse functions */
+int					chars_conv(const char **format);
+static char			*parser(const char **format, va_list args);
+void				parse_width_precis(const char **format, t_format *frmt_struct);
+void				parse_flags(const char **format, t_format *frmt_struct);
+void				parse_size_flag(const char **format, t_format *frmt_struct);
+static void			add_prec(int prec, char **str);
+static void			add_width(int width, char **str, int left);
+static void			print_params(t_format ftm_struct);
 
-static char *format_nb(t_format *fmt, int nb);
+static char			*num_format(t_format *frmt, int num);
 
 #endif

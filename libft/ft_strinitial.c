@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getnbsize.c                                     :+:      :+:    :+:   */
+/*   ft_strinitial.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/17 14:42:28 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/01 12:07:17 by bogoncha         ###   ########.fr       */
+/*   Created: 2019/04/01 15:07:13 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/04/01 15:07:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int		ft_getnbsize(long n)
+char	*ft_strinitial(size_t size, int c)
 {
-	long len;
+	char	*str;
 
-	len = 0;
-	if (n == 0)
-		return (1);
-	if (n < len)
-		len += 1;
-	while (n != 0)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
+	str = (char *)ft_memset(malloc(size + 1), c, size + 1);
+	if (str)
+		str[size] = '\0';
+	return (str);
 }
