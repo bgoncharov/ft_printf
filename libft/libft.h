@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/01 15:03:11 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/01 18:32:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,9 @@ char				*ft_strinitial(size_t size, int c);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
 long				ft_abs(long nb);
+size_t				ft_numberlen(long num);
+size_t				ft_numberlen_sign(long num);
+size_t				ft_numberlen_sign_base(long num, int base);
+size_t				ft_numberlen_base(long num, int base);
 
 #endif

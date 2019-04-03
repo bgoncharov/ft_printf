@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/01 15:41:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/03 14:55:41 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static void			add_prec(int prec, char **str);
 static void			add_width(int width, char **str, int left);
 static void			print_params(t_format ftm_struct);
 
-static char			*num_format(t_format *frmt, int num);
+static char			*num_format(t_format *frmt, int num, int len);
+static void			sign(char *str, t_format *frmt, int num);
+static void			repl_zero(char *str, t_format *frmt, int num);
+static void			ft_numcpy(long long num, char *str);
 
 #endif
