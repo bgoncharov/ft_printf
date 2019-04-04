@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/04 13:05:33 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/04 13:30:35 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static char	*num_format(t_format *frmt, int num, int len)
 	{
 		if ((frmt->flags & (PLUS | SPACE)) || num < 0)
 			++frmt->precision;
-		if (frmt->precision > frmt->width)
-			frmt->width = frmt->precision;
+		if (frmt->precision >= frmt->width)
+			frmt->width = ft_max(frmt->precision, len);
 	}
 	else
 	{
