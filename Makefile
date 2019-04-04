@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/04/03 15:43:20 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/04/04 15:32:15 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,8 @@ OBJS = src/ft_printf.o src/parser.o src/char_string.o src/numbers.o main.o
 
 all: $(NAME)
 
-test: $(NAME)
-
 $(NAME): lib
-	gcc libft/libft.a $(SRC) -o test
+	$(CC) libft/libft.a $(SRC) -o test
 
 lib: fclean
 	make -C libft

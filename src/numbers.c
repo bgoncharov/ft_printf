@@ -6,39 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/04 15:08:32 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/04 15:12:56 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-/*
-static void	sign(char *str, t_format *frmt, int num)
-{
-	if (!(frmt->flags & MINUS))
-		str += (frmt->width - frmt->precision);
-	if (((frmt->flags & (PLUS | SPACE)) || num < 0))
-	{
-		if (num < 0)
-			*str = '-';
-		else if ((frmt->flags & PLUS) && num >= 0)
-			*str = '+';
-		else if ((frmt->flags & SPACE) && num >= 0)
-			*str = ' ';
-	}
-	while (str && *str == ' ')
-		*str++ = '0';
-}
-
-static void repl_zero(char *str, t_format *frmt, int num)
-{
-	if (!(frmt->flags & MINUS))
-		str += (frmt->width - frmt->precision);
-	if (((frmt->flags & (PLUS | SPACE)) || num < 0))
-		++str;
-	while (str && *str == ' ')
-		*str++ = '0';
-}
-*/
 
 static long long take_num(char length, va_list args)
 {
