@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/03 14:55:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/04 13:02:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ static char			*num_format(t_format *frmt, int num, int len);
 static void			sign(char *str, t_format *frmt, int num);
 static void			repl_zero(char *str, t_format *frmt, int num);
 static void			ft_numcpy(long long num, char *str);
+static void			append_flags(char *str, t_format *frmt, int num);
 
 #endif
