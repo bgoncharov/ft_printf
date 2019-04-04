@@ -7,7 +7,7 @@ int	main(void)
 {
 	int		i;
 
-	i = 99;
+	// i = 99;
 	/*
 	// normal tests
 	ft_printf("Hello, World!\n");
@@ -122,6 +122,7 @@ int	main(void)
 	//ft_printf("%# 05.3d %.d %d %d gg!\n", 1, -2, 33, 42);
 
 	// versus test with width, precision, and -+ 0 flags
+	/*
 	ft_printf("3d:      |%3d|\n", 42890);
 	ft_printf("3d:      |%3d|\n", -42890);
 	ft_printf("2d:      |%2d|\n", i);
@@ -179,5 +180,17 @@ int	main(void)
 	printf("+10.4d:  |%10.4d|\n", i);
 	printf("-010.4d: |%-10.4d|\n", -i);
 	printf("010.4d:  |%10.4d|\n", -i);
+	*/
+
+	// more tests
+	ft_printf("%.2d\n", 4242);
+	ft_printf("%.d\n", 4242);
+	ft_printf("%+.2d\n", 4242);
+	ft_printf("%+.d\n", 4242);
+	ft_printf("%-.2d\n", 4242);
+	ft_printf("%-.d\n", 4242);
+	ft_printf("%0.2d\n", 4242);
+	ft_printf("%0.d\n", 4242);
+
 	return (0);
 }
