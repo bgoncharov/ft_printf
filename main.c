@@ -5,7 +5,7 @@
 
 int	main(void)
 {
-	int		i;
+	//int		i;
 
 	// i = 99;
 	/*
@@ -181,6 +181,11 @@ int	main(void)
 	printf("-010.4d: |%-10.4d|\n", -i);
 	printf("010.4d:  |%10.4d|\n", -i);
 	*/
+
+	// different sizes
+	ft_printf("%hhd\n", 128);
+	ft_printf("%ld\n", 2147483648);
+	ft_printf("%lld\n", 9223372036854775807);
 
 	// more tests
 	ft_printf("%.2d\n", 4242);
