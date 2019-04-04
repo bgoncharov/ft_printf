@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/04 13:30:35 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/04 13:46:27 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ static void	ft_numcpy(long long num, char *str)
 
 static char	*num_format(t_format *frmt, int num, int len)
 {
-	char	*str;
-
 	if (frmt->precision != -1)
 	{
+		if (frmt->precision < len)
+			frmt->precision = len;
 		if ((frmt->flags & (PLUS | SPACE)) || num < 0)
 			++frmt->precision;
-		if (frmt->precision >= frmt->width)
-			frmt->width = ft_max(frmt->precision, len);
+		if (frmt->precision > frmt->width)
+			frmt->width = frmt->precision;
 	}
 	else
 	{
@@ -91,8 +91,7 @@ static char	*num_format(t_format *frmt, int num, int len)
 		if (frmt->flags & ZERO)
 			frmt->precision = frmt->width;
 	}
-	str = ft_strinitial(frmt->width, ' ');
-	return (str);
+	return (ft_strinitial(frmt->width, ' '));
 }
 
 char		*flg_int(t_format *frmt_struct, va_list args)
