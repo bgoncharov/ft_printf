@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/04 13:46:27 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/04 15:08:32 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,29 @@ static void repl_zero(char *str, t_format *frmt, int num)
 }
 */
 
-static void	append_flags(char *str, t_format *frmt, int num)
+static long long take_num(char length, va_list args)
+{
+	long long num;
+
+	num = 0;
+	if (length == 0)
+		num = va_arg(args, int);
+	else if (length == 'l')
+		num = va_arg(args, long);
+	else if (length == 'L')
+		num = va_arg(args, long long);
+	else if (length == 'h')
+		num = va_arg(args, int);
+	else if (length == 'H')
+		num = va_arg(args, int);
+	else if (length == 'j')
+		num = va_arg(args, long long);
+	else if (length == 'z')
+		num = va_arg(args, size_t);
+	return (num);
+}
+
+static void	append_flags(char *str, t_format *frmt, long long num)
 {
 	if (!(frmt->flags & MINUS))
 		str += (frmt->width - frmt->precision);
@@ -67,7 +89,7 @@ static void	ft_numcpy(long long num, char *str)
 		*str = (num % 10 + '0');
 }
 
-static char	*num_format(t_format *frmt, int num, int len)
+static char	*num_format(t_format *frmt, long long num, int len)
 {
 	if (frmt->precision != -1)
 	{
@@ -96,11 +118,11 @@ static char	*num_format(t_format *frmt, int num, int len)
 
 char		*flg_int(t_format *frmt_struct, va_list args)
 {
-	char	*new;
-	int		num;
-    int     len;
+	char		*new;
+	long long	num;
+    int			len;
 
-	num = va_arg(args, int);
+	num = take_num(frmt_struct->lenght, args);
     if (frmt_struct->precision == 0 && num == 0)
         len = 0;
     else
@@ -114,9 +136,5 @@ char		*flg_int(t_format *frmt_struct, va_list args)
             ft_numcpy(num, new + (frmt_struct->width - 1));
     }
 	append_flags(new, frmt_struct, num);
-	/*
-	sign(new, frmt_struct, num);
-	repl_zero(new, frmt_struct, num);
-	*/
 	return (new);
 }
