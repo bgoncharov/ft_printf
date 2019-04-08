@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 19:26:38 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/07 20:21:05 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char		*forward(t_format *format_struct, va_list args)
 	return (0);
 }
 
-static char		*parser(const char **format, va_list args)
+static char		*parser(const char **format, va_list args, size_t *len)
 {
 	t_format	*format_struct;
 	char		*ret;
@@ -94,6 +94,8 @@ static char		*parser(const char **format, va_list args)
 	parse_size_flag(format, format_struct);
 	format_struct->conv = chars_conv(format);
 	ret = forward(format_struct, args);
+	if (ret)
+		*len = (size_t)format_struct->width;
 	free(format_struct);
 	return (ret);
 }
@@ -110,7 +112,7 @@ static size_t	create_list(t_list **lst, const char *format, va_list args)
 		if (*format == '%')
 		{
 			format++;
-			new = parser(&format, args);
+			new = parser(&format, args, &len);
 			if (!new)
 				continue ;
 			len = ft_strlen(new);
@@ -136,7 +138,7 @@ int				ft_printf(const char *format, ...)
 	va_start(args, format);
 	strs = 0;
 	total_len = create_list(&strs, format, args);
-	ft_lstiter(strs, ft_lstputstr);
+	ft_lstiter(strs, ft_lstputstr_len);
 	va_end(args);
 	return (total_len);
 }
