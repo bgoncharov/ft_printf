@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/04 15:07:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:25:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define MINUS 0x4
 # define PLUS 0x8
 # define SPACE 0x10
+
+# define CONV "cCsS%dDiuUbBoOxXp"
 
 typedef struct		s_format
 {
@@ -58,5 +60,9 @@ static void			repl_zero(char *str, t_format *frmt, int num);
 static void			ft_numcpy(long long num, char *str);
 static void			append_flags(char *str, t_format *frmt, long long num);
 static long long	take_num(char length, va_list args);
+
+char				*flg_box(t_format *frmt, va_list args);
+char				*flg_p(t_format *frmt, va_list args);
+char				*flg_u(t_format *frmt, va_list args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/01 16:27:58 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:27:46 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			chars_conv(const char **format)
 	const char	*types;
 	char		*sub;
 
-	types = "cCsSdDioOuUxXp%";
+	types = CONV;
 	if (*format && (sub = ft_strchr(types, **format)))
 	{
 		(*format)++;
