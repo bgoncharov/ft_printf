@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_string.c                                      :+:      :+:    :+:   */
+/*   flg_scpercent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 12:59:00 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/07 20:30:57 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,13 @@ char *flg_str(t_format *frmt, va_list args)
 char *flg_percent(t_format *frmt)
 {
 	char *str;
-	//print_params(*fmt_struct);
-	str = ft_strdup("%");
-	add_width(frmt->width, &str, (frmt->flags & MINUS));
+
+	if (frmt->width < 1)
+		frmt->width = 1;
+	str = ft_strinitial(frmt->width, ' ');
+	if (frmt->flags & MINUS)
+		str[0] = '%';
+	else
+		str[frmt->width - 1] = '%';
 	return (str);
 }

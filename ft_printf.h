@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 19:25:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/07 20:24:33 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char				*flg_char(t_format *frmt_struct, va_list args);
 
 /* parse functions */
 int					chars_conv(const char **format);
-static char			*parser(const char **format, va_list args);
+static char			*parser(const char **format, va_list args, size_t *len);
 void				parse_width_precis(const char **format, t_format *frmt_struct);
 void				parse_flags(const char **format, t_format *frmt_struct);
 void				parse_size_flag(const char **format, t_format *frmt_struct);
@@ -62,7 +62,7 @@ static void			append_flags(char *str, t_format *frmt, long long num);
 static long long	take_num(char length, va_list args);
 
 char				*flg_box(t_format *frmt, va_list args);
-char				*flg_p(t_format *frmt, va_list args);
+char				*flg_pointer(t_format *frmt, va_list args);
 char				*flg_u(t_format *frmt, va_list args);
 
 #endif
