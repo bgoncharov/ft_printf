@@ -53,7 +53,7 @@ static void	append_flags(char *str, t_format *frmt, long long num)
 
 static void	ft_numcpy(long long num, char *str)
 {
-	if (num > 10 || num < -10)
+	if (num >= 10 || num <= -10)
 		ft_numcpy(num / 10, str - 1);
 	if (num < 0)
 		*str = (ft_abs(num % 10) + '0');
