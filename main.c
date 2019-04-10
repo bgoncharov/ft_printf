@@ -24,8 +24,10 @@ int	main(void)
 	ft_printf("|%+07.d|, 0\n", 0);
 	ft_printf("|%-+07.d|, 0\n", 0);
 	ft_printf("|% 07.d|, 0\n", 0);
+	/*
 	printf("|%+07.d|, 0\n", 0);
 	printf("|% 07.d|, 0\n", 0);
+	*/
 	ft_putchar('\n');
 	ft_printf("|%08u|\n", i);
 	ft_printf("|%02u|\n", i);
