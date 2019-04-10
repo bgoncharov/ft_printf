@@ -34,7 +34,7 @@ static long long take_num(char length, va_list args)
 	return (num);
 }
 
-static void	append_flags(char *str, t_format *frmt, long long num)
+static void	append_flags(char *str, t_format *frmt, long long num, int len)
 {
 	if (!(frmt->flags & MINUS))
 		str += (frmt->width - frmt->precision);
@@ -47,8 +47,11 @@ static void	append_flags(char *str, t_format *frmt, long long num)
 		else if ((frmt->flags & SPACE) && num >= 0)
 			*str++ = ' ';
 	}
-	while (str && *str == ' ')
-		*str++ = '0';
+	if (len)
+	{
+		while (str && *str == ' ')
+			*str++ = '0';
+	}
 }
 
 static void	ft_numcpy(long long num, char *str)
