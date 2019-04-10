@@ -110,6 +110,6 @@ char		*flg_int(t_format *frmt_struct, va_list args)
         else
             ft_numcpy(num, new + (frmt_struct->width - 1));
     }
-	append_flags(new, frmt_struct, num);
+	append_flags(new, frmt_struct, num, len);
 	return (new);
 }

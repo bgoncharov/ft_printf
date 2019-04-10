@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_numberlen_sign_base(long num, int base)
+size_t	ft_numberlen_sign_base(long long num, int base)
 {
 	int length;
 
@@ -30,7 +30,7 @@ size_t	ft_numberlen_sign_base(long num, int base)
 	return (length);
 }
 
-size_t	ft_numberlen_base(long num, int base)
+size_t	ft_numberlen_base(long long num, int base)
 {
 	int length;
 

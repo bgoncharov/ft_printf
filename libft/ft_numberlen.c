@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t		ft_numlen_sign(long num)
+size_t		ft_numberlen_sign(long long num)
 {
 	size_t	length;
 
@@ -30,12 +30,25 @@ size_t		ft_numlen_sign(long num)
 	return (length);
 }
 
-size_t		ft_numberlen(long num)
+size_t		ft_numberlen(long long num)
 {
 	size_t	length;
 
 	length = 1;
 	while (num >= 10 || num <= -10)
+	{
+		num /= 10;
+		++length;
+	}
+	return (length);
+}
+
+size_t		ft_unumberlen(unsigned long long num)
+{
+	size_t	length;
+
+	length = 1;
+	while (num >= 10)
 	{
 		num /= 10;
 		++length;

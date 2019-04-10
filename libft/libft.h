@@ -105,10 +105,11 @@ char				*ft_strinitial(size_t size, int c);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
 long				ft_abs(long nb);
-size_t				ft_numberlen(long num);
-size_t				ft_numberlen_sign(long num);
-size_t				ft_numberlen_sign_base(long num, int base);
-size_t				ft_numberlen_base(long num, int base);
+size_t				ft_numberlen(long long num);
+size_t				ft_numberlen_sign(long long num);
+size_t				ft_unumberlen(unsigned long long num);
+size_t				ft_numberlen_sign_base(long long num, int base);
+size_t				ft_numberlen_base(long long num, int base);
 void				ft_lstputstr_len(t_list *item);
 
 #endif

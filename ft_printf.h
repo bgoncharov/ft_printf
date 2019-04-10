@@ -58,7 +58,7 @@ static char			*num_format(t_format *frmt, long long num, int len);
 static void			sign(char *str, t_format *frmt, int num);
 static void			repl_zero(char *str, t_format *frmt, int num);
 static void			ft_numcpy(long long num, char *str);
-static void			append_flags(char *str, t_format *frmt, long long num);
+static void			append_flags(char *str, t_format *frmt, long long num, int len);
 static long long	take_num(char length, va_list args);
 
 char				*flg_box(t_format *frmt, va_list args);
