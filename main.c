@@ -5,15 +5,23 @@
 
 int	main(void)
 {
+	/*
 	int		i;
 
 	i = 99;
-	/*
 	// normal tests
 	ft_printf("Hello, World!\n");
 	ft_printf("testing a %char\n", (char)i);
 	ft_printf("i: %d\n", i);
 	ft_printf("String: \"%s\"\nInt: %d\n", "stringy string", 1990);
+	ft_printf("%d %ld %lld\n", 123, 1234, 12345);
+	*/
+	/*
+	// poop tests
+	ft_printf("%.0d\n", 0);
+	ft_printf("|%.-3d|\n", 0);
+	printf("%.0d\n", 0);
+	printf("%.-3d\n", 0);
 	*/
 	/*
 	// tests with precision and width for strings
@@ -60,8 +68,8 @@ int	main(void)
 	ft_printf("|%-10.2c|\n", 0);
 	ft_printf("|%-2.10c|\n", 0);
 	*/
-	// tests with precision and width for ints
 	/*
+	// tests with precision and width for ints
 	ft_printf("|%.5u|, 99\n", i);
 	ft_printf("|%.0u|, 99\n", i);
 	ft_printf("|%.u|, 0\n", 0);
@@ -77,12 +85,16 @@ int	main(void)
 	ft_printf("|%+07.d|, 0\n", 0);
 	ft_printf("|%-+07.d|, 0\n", 0);
 	ft_printf("|% 07.d|, 0\n", 0);
+	*/
+	/*
 	printf("|%-07.u|, 0\n", 0);
 	printf("|%-07.d|, 0\n", 0);
 	printf("|%+07.d|, 0\n", 0);
 	printf("|%-+07.d|, 0\n", 0);
 	printf("|% 07.d|, 0\n", 0);
 	ft_putchar('\n');
+	*/
+	/*
 	// testing 0 flag for ints
 	ft_printf("|%08u|\n", i);
 	ft_printf("|%02u|\n", i);
@@ -108,7 +120,6 @@ int	main(void)
 	ft_printf("|% 07.0u|, 99\n", i);
 	ft_printf("|%-07.u|, 0\n", 0);
 	*/
-	ft_printf("|%hU|\n", 4294967296);
 	/*
 	// testing lengths
 	ft_printf("testing with %lld %hhd %ld %hd\n", i, i, i, i);
@@ -118,6 +129,8 @@ int	main(void)
 	ft_printf("%%10% : |%10%|\n");
 	*/
 	//ft_printf("%d\n", 1001);
+	// testing U
+	//ft_printf("|%hU|\n", 4294967296);
 
 	/*
 	// testing standard printf
