@@ -22,3 +22,9 @@ void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
 		*alst = NULL;
 	}
 }
+
+void	ft_lstmemdel(void *content, size_t content_sie)
+{
+	ft_memdel(&content);
+	(void)content_size;
+}

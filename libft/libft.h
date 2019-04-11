@@ -111,5 +111,6 @@ size_t				ft_unumberlen(unsigned long long num);
 size_t				ft_numberlen_sign_base(long long num, int base);
 size_t				ft_numberlen_base(long long num, int base);
 void				ft_lstputstr_len(t_list *item);
+void				ft_lstmemdel(void *content, size_t content_sie);
 
 #endif
