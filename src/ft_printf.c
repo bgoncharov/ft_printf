@@ -93,7 +93,8 @@ static char		*parser(const char **format, va_list args, size_t *len)
 	parse_flags(format, format_struct);
 	parse_width_precis(format, format_struct);
 	parse_size_flag(format, format_struct);
-	index = get_conv(format, format_struct)
+	index = get_conv(format, format_struct);
+	ret = forward(index, format_struct, args);
 	if (ret)
 		*len = (size_t)format_struct->width;
 	free(format_struct);

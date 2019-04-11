@@ -53,7 +53,7 @@ int			get_conv(const char **format, t_format *frmt_struct)
 	if (*format && (sub = ft_strchr(types, **format)))
 	{
 		(*format)++;
-		frmt_struct->conv = *index;
+		frmt_struct->conv = *sub;
 		return (sub - types);
 	}
 	return (-1);
