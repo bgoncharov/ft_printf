@@ -61,6 +61,7 @@ int	main(void)
 	ft_printf("|%-2.10c|\n", 0);
 	*/
 	// tests with precision and width for ints
+	/*
 	ft_printf("|%.5u|, 99\n", i);
 	ft_printf("|%.0u|, 99\n", i);
 	ft_printf("|%.u|, 0\n", 0);
@@ -76,13 +77,11 @@ int	main(void)
 	ft_printf("|%+07.d|, 0\n", 0);
 	ft_printf("|%-+07.d|, 0\n", 0);
 	ft_printf("|% 07.d|, 0\n", 0);
-	/*
 	printf("|%-07.u|, 0\n", 0);
 	printf("|%-07.d|, 0\n", 0);
 	printf("|%+07.d|, 0\n", 0);
 	printf("|%-+07.d|, 0\n", 0);
 	printf("|% 07.d|, 0\n", 0);
-	*/
 	ft_putchar('\n');
 	// testing 0 flag for ints
 	ft_printf("|%08u|\n", i);
@@ -108,6 +107,8 @@ int	main(void)
 	ft_printf("|%0+7.5u|, 99\n", i);
 	ft_printf("|% 07.0u|, 99\n", i);
 	ft_printf("|%-07.u|, 0\n", 0);
+	*/
+	ft_printf("|%hU|\n", 4294967296);
 	/*
 	// testing lengths
 	ft_printf("testing with %lld %hhd %ld %hd\n", i, i, i, i);

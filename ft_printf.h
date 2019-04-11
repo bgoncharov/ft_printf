@@ -43,26 +43,20 @@ char				*flg_str(t_format *frmt_struct, va_list args);
 char				*flg_int(t_format *frmt, va_list args);
 char				*flg_percent(t_format *frmt_struct);
 char				*flg_char(t_format *frmt_struct, va_list args);
-
-/* parse functions */
-int					get_conv(const char **format, t_format *frmt_struct);
-static char			*parser(const char **format, va_list args, size_t *len);
-void				parse_width_precis(const char **format, t_format *frmt_struct);
-void				parse_flags(const char **format, t_format *frmt_struct);
-void				parse_size_flag(const char **format, t_format *frmt_struct);
-static void			add_prec(int prec, char **str);
-static void			add_width(int width, char **str, int left);
-static void			print_params(t_format ftm_struct);
-
-static char			*num_format(t_format *frmt, long long num, int len);
-static void			sign(char *str, t_format *frmt, int num);
-static void			repl_zero(char *str, t_format *frmt, int num);
-static void			ft_numcpy(long long num, char *str);
-static void			append_flags(char *str, t_format *frmt, long long num, int len);
-static long long 	take_num(char conv, char length, va_list args);
-
 char				*flg_box(t_format *frmt, va_list args);
 char				*flg_pointer(t_format *frmt, va_list args);
 char				*flg_u(t_format *frmt, va_list args);
+char				*flg_uint(t_format *frmt, va_list args);
+
+/* parse functions */
+static void			print_params(t_format ftm_struct);
+int					get_conv(const char **format, t_format *frmt_struct);
+void				parse_width_precis(const char **format, t_format *frmt_struct);
+void				parse_flags(const char **format, t_format *frmt_struct);
+void				parse_size_flag(const char **format, t_format *frmt_struct);
+
+/* printf */
+int				ft_printf(const char *format, ...);
+
 
 #endif

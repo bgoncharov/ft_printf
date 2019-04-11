@@ -15,10 +15,10 @@ NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 
 SRC = src/ft_printf.c src/parser.c src/flg_scpercent.c src/flg_int.c main.c \
-	src/flg_box.c src/flg_pointer.c src/flg_u.c
+	src/flg_box.c src/flg_pointer.c src/flg_u.c src/flg_uint.c
 
 OBJS = src/ft_printf.o src/parser.o src/flg_scpercent.o src/flg_int.o main.o \
-	src/flg_box.o src/flg_pointer.o src/flg_u.o
+	src/flg_box.o src/flg_pointer.o src/flg_u.o src/flg_uint.o
 
 all: $(NAME)
 

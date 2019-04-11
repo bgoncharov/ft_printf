@@ -43,8 +43,8 @@ static unsigned long long take_num(char conv, char length, va_list args)
 
 static void	append_flags(char *str, t_format *frmt, int len)
 {
-	if (!(fmt->flags & MINUS))
-		str += (fmt->width - fmt->precision);
+	if (!(frmt->flags & MINUS))
+		str += (frmt->width - frmt->precision);
 	if (len)
 	{
 		while (str && *str == ' ')
@@ -54,12 +54,12 @@ static void	append_flags(char *str, t_format *frmt, int len)
 
 static void	ft_numcpy(unsigned long long num, char *str)
 {
-	if (nb >= 10)
-		ft_nbrcpy(nb / 10, str - 1);
-	*str = (nb % 10 + '0');
+	if (num >= 10)
+		ft_numcpy(num / 10, str - 1);
+	*str = (num % 10 + '0');
 }
 
-static char	*num_format(t_format *frmt, long long num, int len)
+static char	*num_format(t_format *frmt, int len)
 {
 	if (frmt->precision != -1)
 	{
@@ -70,12 +70,12 @@ static char	*num_format(t_format *frmt, long long num, int len)
 	}
 	else
 	{
-		fmt->width = ft_max(fmt->width, len);
-		fmt->precision = len;
-		if (fmt->flags & ZERO)
-			fmt->precision = fmt->width;
+		frmt->width = ft_max(frmt->width, len);
+		frmt->precision = len;
+		if (frmt->flags & ZERO)
+			frmt->precision = frmt->width;
 	}
-	return (ft_strinit(fmt->width, ' '));
+	return (ft_strinitial(frmt->width, ' '));
 }
 
 char		*flg_uint(t_format *frmt, va_list args)
@@ -89,7 +89,7 @@ char		*flg_uint(t_format *frmt, va_list args)
         len = 0;
     else
         len = ft_numberlen(num);    
-	new = num_format(frmt, num, len);
+	new = num_format(frmt, len);
     if (len)
     {
         if (frmt->flags & MINUS)
@@ -97,6 +97,6 @@ char		*flg_uint(t_format *frmt, va_list args)
         else
             ft_numcpy(num, new + (frmt->width - 1));
     }
-	append_flags(new, frmt, num, len);
+	append_flags(new, frmt, len);
 	return (new);
 }

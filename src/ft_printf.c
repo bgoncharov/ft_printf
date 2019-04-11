@@ -69,8 +69,8 @@ static char		*forward(int index, t_format *format_struct, va_list args)
 	p[5] = flg_int;
 	p[6] = flg_int;
 	p[7] = flg_int;
-	p[8] = flg_u;
-	p[9] = flg_u;
+	p[8] = flg_uint;
+	p[9] = flg_uint;
 	p[10] = flg_box;
 	p[11] = flg_box;
 	p[12] = flg_box;
