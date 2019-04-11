@@ -12,11 +12,18 @@
 
 #include "../ft_printf.h"
 
-static unsigned long long take_num(char length, va_list args)
+static unsigned long long take_num(char conv, char length, va_list args)
 {
 	unsigned long long num;
 
 	num = 0;
+	if (conv == 'U')
+	{
+		if (length == 'l' || length == 'L')
+			length = 'L';
+		else if (length == 0)
+			length = 'l';
+	}
 	if (length == 0)
 		num = va_arg(args, unsigned int);
 	else if (length == 'l')
@@ -77,7 +84,7 @@ char		*flg_uint(t_format *frmt, va_list args)
 	long long	num;
     int			len;
 
-	num = take_num(frmt->lenght, args);
+	num = take_num(frmt->conv, frmt->lenght, args);
     if (frmt->precision == 0 && num == 0)
         len = 0;
     else

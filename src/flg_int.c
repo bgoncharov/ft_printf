@@ -12,11 +12,18 @@
 
 #include "../ft_printf.h"
 
-static long long take_num(char length, va_list args)
+static long long take_num(char conv, char length, va_list args)
 {
 	long long num;
 
 	num = 0;
+	if (conv == 'D')
+	{
+		if (length == 'l' || length == 'L')
+			length = 'L';
+		else if (length == 0)
+			length = 'l';
+	}
 	if (length == 0)
 		num = va_arg(args, int);
 	else if (length == 'l')
@@ -91,25 +98,25 @@ static char	*num_format(t_format *frmt, long long num, int len)
 	return (ft_strinitial(frmt->width, ' '));
 }
 
-char		*flg_int(t_format *frmt_struct, va_list args)
+char		*flg_int(t_format *frmt, va_list args)
 {
 	char		*new;
 	long long	num;
     int			len;
 
-	num = take_num(frmt_struct->lenght, args);
-    if (frmt_struct->precision == 0 && num == 0)
+	num = take_num(frmt->conv, frmt->lenght, args);
+    if (frmt->precision == 0 && num == 0)
         len = 0;
     else
         len = ft_numberlen(num);    
-	new = num_format(frmt_struct, num, len);
+	new = num_format(frmt, num, len);
     if (len)
     {
-        if (frmt_struct->flags & MINUS)
-            ft_numcpy(num, new + (frmt_struct->precision - 1));
+        if (frmt->flags & MINUS)
+            ft_numcpy(num, new + (frmt->precision - 1));
         else
-            ft_numcpy(num, new + (frmt_struct->width - 1));
+            ft_numcpy(num, new + (frmt->width - 1));
     }
-	append_flags(new, frmt_struct, num, len);
+	append_flags(new, frmt, num, len);
 	return (new);
 }

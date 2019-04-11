@@ -40,7 +40,7 @@ int					ft_printf(const char *format, ...);
 
 /* function pointer functions */
 char				*flg_str(t_format *frmt_struct, va_list args);
-char				*flg_int(t_format *frmt_struct, va_list args);
+char				*flg_int(t_format *frmt, va_list args);
 char				*flg_percent(t_format *frmt_struct);
 char				*flg_char(t_format *frmt_struct, va_list args);
 
@@ -59,7 +59,7 @@ static void			sign(char *str, t_format *frmt, int num);
 static void			repl_zero(char *str, t_format *frmt, int num);
 static void			ft_numcpy(long long num, char *str);
 static void			append_flags(char *str, t_format *frmt, long long num, int len);
-static long long	take_num(char length, va_list args);
+static long long 	take_num(char conv, char length, va_list args);
 
 char				*flg_box(t_format *frmt, va_list args);
 char				*flg_pointer(t_format *frmt, va_list args);
