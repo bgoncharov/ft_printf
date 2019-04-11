@@ -62,7 +62,7 @@ int			get_conv(const char **format, t_format *frmt_struct)
 void			parse_size_flag(const char **format, t_format *frmt_struct)
 {
 	const char	*flags;
-	char		*sub;
+	const char	*sub;
 
 	flags = "hHlLjz";
 	if (*format && (sub = ft_strchr(flags, **format)))
@@ -113,7 +113,7 @@ void			parse_flags(const char **format, t_format *frmt_struct)
 	while ((cur = ft_strchr(flags, **format)))
 	{
 		ret = ret | (1 << (cur - flags));
-		(*format)++;
+		++(*format);
 	}
 	ret = ((ret & (ZERO | MINUS)) == (ZERO | MINUS) ? (ret ^ ZERO) : ret);
 	ret = ((ret & (SPACE | PLUS)) == (SPACE | PLUS) ? (ret ^ SPACE) : ret);

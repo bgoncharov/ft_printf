@@ -112,7 +112,7 @@ static size_t	create_list(t_list **lst, const char *format, va_list args)
 	{
 		if (*format == '%')
 		{
-			format++;
+			++format;
 			new = parser(&format, args, &len);
 			if (!new)
 				continue ;
@@ -140,6 +140,7 @@ int				ft_printf(const char *format, ...)
 	strs = 0;
 	total_len = create_list(&strs, format, args);
 	ft_lstiter(strs, ft_lstputstr_len);
+	ft_lstdel(&strs, ft_lstmemdel);
 	va_end(args);
 	return (total_len);
 }
