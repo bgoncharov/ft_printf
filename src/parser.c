@@ -18,7 +18,7 @@ void		print_params(t_format frmt_struct)
 	char	*flags;
 	int		i;
 
-	convs = "cCsSDioOuUxXp%";
+	convs = CONV;
 	flags = "#0-+ ";
 	i = 0;
 	ft_putchar('%');
@@ -44,7 +44,7 @@ void		print_params(t_format frmt_struct)
 	ft_putstr(":	");
 }
 
-int			chars_conv(const char **format)
+int			get_conv(const char **format, t_format *frmt_struct)
 {
 	const char	*types;
 	char		*sub;
@@ -53,6 +53,7 @@ int			chars_conv(const char **format)
 	if (*format && (sub = ft_strchr(types, **format)))
 	{
 		(*format)++;
+		frmt_struct->conv = *index;
 		return (sub - types);
 	}
 	return (-1);

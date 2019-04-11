@@ -49,7 +49,7 @@ t_format		*initial()
 	t_format	*frmt;
 
 	frmt = (t_format *)ft_memalloc(sizeof(t_format));
-	frmt->conv = -1;
+	frmt->conv = 0;
 	frmt->flags = 0;
 	frmt->width = 0;
 	frmt->precision = -1;
@@ -57,7 +57,7 @@ t_format		*initial()
 	return (frmt);
 }
 
-static char		*forward(t_format *format_struct, va_list args)
+static char		*forward(int index, t_format *format_struct, va_list args)
 {
 	static char	*(*p[17])();
 
@@ -78,8 +78,8 @@ static char		*forward(t_format *format_struct, va_list args)
 	p[14] = flg_box;
 	p[15] = flg_box;
 	p[16] = flg_pointer;
-	if (format_struct->conv != -1)
-		return (p[format_struct->conv](format_struct, args));
+	if (index != -1)
+		return (p[index](format_struct, args));
 	return (0);
 }
 
@@ -87,13 +87,13 @@ static char		*parser(const char **format, va_list args, size_t *len)
 {
 	t_format	*format_struct;
 	char		*ret;
+	int			index;
 
 	format_struct = initial();
 	parse_flags(format, format_struct);
 	parse_width_precis(format, format_struct);
 	parse_size_flag(format, format_struct);
-	format_struct->conv = chars_conv(format);
-	ret = forward(format_struct, args);
+	index = get_conv(format, format_struct)
 	if (ret)
 		*len = (size_t)format_struct->width;
 	free(format_struct);

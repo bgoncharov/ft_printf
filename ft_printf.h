@@ -29,7 +29,7 @@
 
 typedef struct		s_format
 {
-	int				conv;
+	char				conv;
 	unsigned char	flags;
 	int				width;
 	int				precision;
@@ -45,7 +45,7 @@ char				*flg_percent(t_format *frmt_struct);
 char				*flg_char(t_format *frmt_struct, va_list args);
 
 /* parse functions */
-int					chars_conv(const char **format);
+int					get_conv(const char **format, t_format *frmt_struct);
 static char			*parser(const char **format, va_list args, size_t *len);
 void				parse_width_precis(const char **format, t_format *frmt_struct);
 void				parse_flags(const char **format, t_format *frmt_struct);
