@@ -21,7 +21,7 @@ static long long take_num(char conv, char length, va_list args)
 	{
 		if (length == 'l' || length == 'L')
 			length = 'L';
-		else if (length == 0)
+		else
 			length = 'l';
 	}
 	if (length == 0)
