@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 20:24:33 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:47:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ char				*flg_str(t_format *frmt_struct, va_list args);
 char				*flg_int(t_format *frmt, va_list args);
 char				*flg_percent(t_format *frmt_struct);
 char				*flg_char(t_format *frmt_struct, va_list args);
-char				*flg_box(t_format *frmt, va_list args);
+char				*flg_bin(t_format *frmt, va_list args);
+char				*flg_hex(t_format *frmt, va_list args);
+char				*flg_oct(t_format *frmt, va_list args);
 char				*flg_pointer(t_format *frmt, va_list args);
 char				*flg_u(t_format *frmt, va_list args);
 char				*flg_uint(t_format *frmt, va_list args);
