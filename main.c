@@ -257,7 +257,8 @@ int	main(void)
 	ft_printf("%ld\n", 2147483648);
 	ft_printf("%lld\n", 9223372036854775807);
 	*/
-	ft_printf("%#.o\n", 0);
+	ft_printf("%#-5.o\n", 0);
+	ft_printf("%#5.o\n", 0);
 	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 0, 0, 0, 0, 0);
 	ft_printf("%o\t%#o\t%.o\t%#.o\t%#6.4o\n", 7, 7, 7, 7, 7);
 	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 8, 8, 8, 8, 512);
