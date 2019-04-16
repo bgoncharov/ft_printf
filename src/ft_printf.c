@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 20:25:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/15 20:07:06 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_format		*initial()
 
 static char		*forward(int index, t_format *format_struct, va_list args)
 {
-	static char	*(*p[17])();
+	static char	*(*p[16])();
 
 	p[0] = flg_char;
 	p[1] = flg_char;
@@ -71,13 +71,12 @@ static char		*forward(int index, t_format *format_struct, va_list args)
 	p[7] = flg_int;
 	p[8] = flg_uint;
 	p[9] = flg_uint;
-	p[10] = flg_box;
-	p[11] = flg_box;
-	p[12] = flg_box;
-	p[13] = flg_box;
-	p[14] = flg_box;
-	p[15] = flg_box;
-	p[16] = flg_pointer;
+	p[10] = flg_bin;
+	p[11] = flg_oct;
+	p[12] = flg_oct;
+	p[13] = flg_hex;
+	p[14] = flg_hex;
+	p[15] = flg_hex;
 	if (index != -1)
 		return (p[index](format_struct, args));
 	return (0);

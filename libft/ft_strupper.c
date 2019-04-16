@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 17:00:20 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/15 20:11:34 by bogoncha         ###   ########.fr       */
+/*   Created: 2019/04/15 18:47:35 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/04/15 18:47:48 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_strupper(char *str)
 {
-	if ((*alst) && (*alst)->next)
-		ft_lstdel(&((*alst)->next), (*del));
-	ft_lstdel(alst, (*del));
+	char	*cur;
+
+	cur = str;
+	while (cur && *cur)
+	{
+		*cur = ft_toupper(*cur);
+		++cur;
+	}
 }
