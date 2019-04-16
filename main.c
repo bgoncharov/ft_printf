@@ -257,5 +257,19 @@ int	main(void)
 	ft_printf("%ld\n", 2147483648);
 	ft_printf("%lld\n", 9223372036854775807);
 	*/
+	ft_printf("%#.o\n", 0);
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 0, 0, 0, 0, 0);
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#6.4o\n", 7, 7, 7, 7, 7);
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 8, 8, 8, 8, 512);
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.2o\n", 8, 8, 8, 8, 512);
+	ft_printf("\n");
+	ft_printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 0, 0, 0, 0, 0);
+	ft_printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 7, 7, 7, 7, 7);
+	ft_printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 8, 8, 8, 8, 8);
+	ft_printf("\n");
+	ft_printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 0, 0, 0, 0, 0);
+	ft_printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 7, 7, 7, 7, 7);
+	ft_printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 8, 8, 8, 8, 8);
+	ft_printf("\n");
 	return (0);
 }

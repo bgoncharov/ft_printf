@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 19:20:29 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/14 19:47:17 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:23:23 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ char		*flg_bin(t_format *frmt, va_list args)
     if (len)
     {
         if (frmt->flags & MINUS)
-            ft_numcpy_hex(num, new + (frmt->precision - 1));
+            ft_numcpy_bin(num, new + (frmt->precision - 1));
         else
-            ft_numcpy_hex(num, new + (frmt->width - 1));
+            ft_numcpy_bin(num, new + (frmt->width - 1));
     }
 	append_flags(new, frmt, num, len);
 	return (new);
