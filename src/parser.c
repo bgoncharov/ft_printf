@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 19:27:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:11:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void			parse_flags(const char **format, t_format *frmt_struct)
 
 	flags = "#0-+ ";
 	ret = 0;
-	while ((cur = ft_strchr(flags, **format)))
+	while (**format && (cur = ft_strchr(flags, **format)))
 	{
 		ret = ret | (1 << (cur - flags));
 		++(*format);
