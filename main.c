@@ -307,14 +307,14 @@ int	main(void)
 	printf("%06.4x\n", 42);
 	printf("%06.4x\n\n", 255);
 
-	ft_printf("%04x\n", 42);
-	ft_printf("%04x\n", 255);
-	printf("%04x\n", 42);
-	printf("%04x\n\n", 255);
+	ft_printf("%#04x\n", 42);
+	ft_printf("%#04x\n", 255);
+	printf("%#04x\n", 42);
+	printf("%#04x\n\n", 255);
 
-	ft_printf("%06x\n", 42);
-	ft_printf("%06x\n", 255);
-	printf("%06x\n", 42);
-	printf("%06x\n\n", 255);
+	ft_printf("%#06x\n", 42);
+	ft_printf("%#06x\n", 255);
+	printf("%#06x\n", 42);
+	printf("%#06x\n\n", 255);
 	return (0);
 }
