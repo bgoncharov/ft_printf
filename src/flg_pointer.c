@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 19:16:13 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 20:26:19 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/15 22:10:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ char	*flg_pointer(t_format *frmt, va_list args)
 {
 	(void)args;
 	(void)frmt;
-	return("pointer");
+	return(ft_strdup("flg_pointer"));
 }
