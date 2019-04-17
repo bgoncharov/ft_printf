@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 22:51:34 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/16 17:55:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:09:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static char	*num_format(t_format *frmt, unsigned long long num, int len)
 	{
 		if (frmt->precision < len)
 			frmt->precision = len;
-		if (frmt->flags & SHARP)
+		if (frmt->flags & SHARP && num != 0)
 			frmt->precision += 2;
 		if (frmt->precision > frmt->width)
 			frmt->width = frmt->precision;
