@@ -256,7 +256,7 @@ int	main(void)
 	ft_printf("%hhd\n", 128);
 	ft_printf("%ld\n", 2147483648);
 	ft_printf("%lld\n", 9223372036854775807);
-	*/
+	
 	ft_printf("%#.4x\n", 42);
 	ft_printf("%#.4x\n", 255);
 	printf("%#.4x\n", 42);
@@ -316,5 +316,10 @@ int	main(void)
 	ft_printf("%#06x\n", 255);
 	printf("%#06x\n", 42);
 	printf("%#06x\n\n", 255);
+	*/
+
+	ft_printf("");
+	ft_printf("%");
+	ft_printf("%s %C %d %p %x %% %S", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير");
 	return (0);
 }

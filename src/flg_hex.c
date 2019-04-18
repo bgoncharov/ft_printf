@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 22:51:34 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 18:34:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:50:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	append_flags(char *str, t_format *frmt,
 		str += (frmt->width - frmt->precision);
 	if (len)
 	{
-		if (frmt->flags & SHARP && num == 0)
+		if (frmt->flags & SHARP && num != 0)
 		{
 			ft_strncpy(str, "0x", 2);
 			str += 2;
