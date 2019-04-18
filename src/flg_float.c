@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:31:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 19:33:10 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 20:03:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*flg_float(t_format *frmt, va_list valist)
 	double	num;
 	char	*str;
 
-	num = get_nb(frmt->lenght, valist);
+	num = get_num(frmt->lenght, valist);
 	str = ft_ftoa(num, frmt->precision);
 
 	frmt->width = ft_strlen(str);
