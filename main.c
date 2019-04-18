@@ -320,6 +320,15 @@ int	main(void)
 
 	ft_printf("");
 	ft_printf("%");
-	ft_printf("%s %C %d %p %x %% %S", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير");
+	ft_printf("%s %C %d %p %x %% %S\n\n", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير");
+
+	ft_printf("%f\n", 14.75);
+	ft_printf("%.4f\n", 1997.0918);
+	ft_printf("%.9f\n", 217.4444444);
+	ft_printf("%.12lf\n", 0.000000000252628);
+	printf("%f\n", 14.75);
+	printf("%.4f\n", 1997.0918);
+	printf("%.9f\n", 217.4444444);
+	printf("%.12lf\n", 0.000000000252628);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 20:29:29 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 20:41:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char		*fill_string(long intpart, long fraction, int precision)
 	char	*str;
 	int		len_of_intpart;
 	
-	len_of_intpart = ft_numlen(intpart);
+	len_of_intpart = ft_numberlen(intpart);
 
 	str = ft_strnew(len_of_intpart + 1 + precision);
 
@@ -56,7 +56,7 @@ static long		get_fraction(int exp, long mantissa, int precision)
 	double		multiple;
 	double		fraction;
 
-	multiple = (double)ft_pow(10, precision);
+	multiple = (double)ft_power(10, precision);
 	index = 1;
 	if (exp < 0)
 		index += -(exp);
