@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 18:20:04 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 19:33:40 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PLUS 0x8
 # define SPACE 0x10
 
-# define CONV "cCsS%dDiuUboOxXp"
+# define CONV "cCsS%dDiuUboOxXpf"
 
 typedef struct		s_format
 {
@@ -47,6 +47,7 @@ char				*flg_oct(t_format *frmt, va_list args);
 char				*flg_pointer(t_format *frmt, va_list args);
 char				*flg_u(t_format *frmt, va_list args);
 char				*flg_uint(t_format *frmt, va_list args);
+char				*flg_float(t_format *frmt, va_list valist);
 
 /* parse functions */
 static void			print_params(t_format ftm_struct);
