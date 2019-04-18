@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 19:28:10 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 20:29:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char		*fill_string(long intpart, long fraction, int precision)
 	char	*str;
 	int		len_of_intpart;
 	
-	len_of_intpart = ft_numberlen(intpart);
+	len_of_intpart = ft_numlen(intpart);
 
 	str = ft_strnew(len_of_intpart + 1 + precision);
 
@@ -54,22 +54,24 @@ static long		get_fraction(int exp, long mantissa, int precision)
 	int			index;
 	int			max;
 	double		multiple;
-	long		fraction;
+	double		fraction;
 
-	multiple = (double)ft_power(10, precision);
-	index = 51 - exp;
-	max = (precision * 3) + ft_ceil((double)(precision / 3));
-	ft_putnbr(max);
-	ft_putchar('\n');
+	multiple = (double)ft_pow(10, precision);
+	index = 1;
+	if (exp < 0)
+		index += -(exp);
+	max = ((precision + 1) * 3) + ft_ceil((double)((precision + 1) / 3));
 	fraction = 0;
-	while (index >= 0)
+	if (exp < 0 && mantissa)
+		fraction += multiple / (1L << (index - 1));
+	while (index <= max)
 	{
-		if (mantissa & (1L << index))
-			fraction +=  multiple / (1L << (52 - exp - index));
-		--index;
+		if (mantissa & (1L << ((52 - exp) - index)))
+			fraction += multiple / (1L << index);
+		++index;
 	}
 
-	return (fraction);
+	return(ft_round(fraction));
 }
 
 static char		*make_string(int exp, long mantissa, int precision)
@@ -78,9 +80,13 @@ static char		*make_string(int exp, long mantissa, int precision)
 	long	fraction;
 	char	*str;
 
-	intpart = (mantissa >> (52 - exp));
-	if (intpart)
-		intpart |= 1 << (exp);
+	intpart = 0;
+	if (exp > 0)
+	{
+		intpart = (mantissa >> (52 - exp));
+		if (intpart)
+			intpart |= 1 << (exp);
+	}
 
 	fraction = get_fraction(exp, mantissa, precision);
 
