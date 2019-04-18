@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 18:40:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 19:20:27 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,8 @@ void				ft_lstputstr_len(t_list *item);
 void				ft_lstmemdel(void *content, size_t content_sie);
 void				ft_strupper(char *str);
 void				*ft_nmemset(void *b, int c, size_t len);
+int					ft_ceil(double roundee);
+int					ft_floor(double roundee);
+long				ft_power(int a, int b);
 
 #endif
