@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 22:51:34 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 18:50:45 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 19:44:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static void	ft_numcpy_hex(unsigned long long num, char *str)
 
 static char	*num_format(t_format *frmt, unsigned long long num, int len)
 {
+	if (frmt->flags & SHARP && num != 0)
+		len += 2;
 	if (frmt->precision != -1)
 	{
 		if (frmt->precision < len)
@@ -74,8 +76,6 @@ static char	*num_format(t_format *frmt, unsigned long long num, int len)
 	}
 	else
 	{
-		if (frmt->flags & SHARP && num != 0)
-			len += 2;
 		frmt->width = ft_max(frmt->width, len);
 		frmt->precision = len;
 		if (frmt->flags & ZERO)
