@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/04/15 21:22:03 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/04/17 13:37:32 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 
 SRC = src/ft_printf.c src/parser.c src/flg_scpercent.c src/flg_int.c main.c \
-	src/flg_box.c src/flg_pointer.c src/flg_u.c src/flg_uint.c src/flg_bin.c \
+	src/flg_pointer.c src/flg_u.c src/flg_uint.c src/flg_bin.c \
 	src/flg_hex.c src/flg_oct.c
 
 OBJS = src/ft_printf.o src/parser.o src/flg_scpercent.o src/flg_int.o main.o \
-	src/flg_box.o src/flg_pointer.o src/flg_u.o src/flg_uint.o src/flg_bin.o \
+	src/flg_pointer.o src/flg_u.o src/flg_uint.o src/flg_bin.o \
 	src/flg_hex.o src/flg_oct.o
 
 all: $(NAME)

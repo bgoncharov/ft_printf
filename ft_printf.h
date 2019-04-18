@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/15 15:14:57 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:20:04 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@
 # define PLUS 0x8
 # define SPACE 0x10
 
-# define CONV "cCsS%dDiuUbBoOxXp"
+# define CONV "cCsS%dDiuUboOxXp"
 
 typedef struct		s_format
 {
-	char				conv;
+	char			conv;
 	unsigned char	flags;
 	int				width;
 	int				precision;
 	char			lenght;
 }					t_format;
-
-int					ft_printf(const char *format, ...);
 
 /* function pointer functions */
 char				*flg_str(t_format *frmt_struct, va_list args);
@@ -49,7 +47,6 @@ char				*flg_oct(t_format *frmt, va_list args);
 char				*flg_pointer(t_format *frmt, va_list args);
 char				*flg_u(t_format *frmt, va_list args);
 char				*flg_uint(t_format *frmt, va_list args);
-char				*flg_box(t_format *frmt, va_list args);
 
 /* parse functions */
 static void			print_params(t_format ftm_struct);
@@ -59,7 +56,7 @@ void				parse_flags(const char **format, t_format *frmt_struct);
 void				parse_size_flag(const char **format, t_format *frmt_struct);
 
 /* printf */
-int				ft_printf(const char *format, ...);
+int					ft_printf(const char *format, ...);
 
 
 #endif

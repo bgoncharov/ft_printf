@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flg_box.c                                          :+:      :+:    :+:   */
+/*   ft_nmemset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 17:02:34 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 19:15:43 by bogoncha         ###   ########.fr       */
+/*   Created: 2019/04/17 18:39:57 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/04/17 18:40:10 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-char	*flg_box(t_format *frmt, va_list args)
+void	*ft_nmemset(void *b, int c, size_t len)
 {
-	(void)args;
-	(void)frmt;
-	return("box");
+	unsigned char	*cur;
+
+	cur = b;
+	while (len-- && cur)
+		*cur++ = (unsigned char)c;
+	return (b);
 }

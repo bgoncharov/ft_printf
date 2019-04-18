@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/16 18:11:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/16 19:55:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void		print_params(t_format frmt_struct)
 
 int			get_conv(const char **format, t_format *frmt_struct)
 {
-	const char	*types;
-	char		*sub;
+	const char	*flags;
+	char		*index;
 
-	types = CONV;
-	if (*format && (sub = ft_strchr(types, **format)))
+	flags = CONV;
+	if (**format && (index = ft_strchr(flags, **format)))
 	{
 		(*format)++;
-		frmt_struct->conv = *sub;
-		return (sub - types);
+		frmt_struct->conv = *index;
+		return (index - flags);
 	}
 	return (-1);
 }
@@ -65,7 +65,7 @@ void			parse_size_flag(const char **format, t_format *frmt_struct)
 	const char	*sub;
 
 	flags = "hHlLjz";
-	if (*format && (sub = ft_strchr(flags, **format)))
+	if (**format && (sub = ft_strchr(flags, **format)))
 	{
 		if (**format == 'h' && *(*format + 1) == 'h')
 		{
@@ -88,10 +88,10 @@ void			parse_width_precis(const char **format, t_format *frmt_struct)
 	if (*format && ft_isdigit(**format))
 	{
 		frmt_struct->width = ft_atoi(*(char **)format);
-		while (*format && ft_isdigit(**format))
+		while (**format && ft_isdigit(**format))
 			++(*format);
 	}
-	if (*format && **format == '.')
+	if (**format && **format == '.')
 	{
 		++(*format);
 		frmt_struct->precision = ft_atoi(*(char**)format);
@@ -104,9 +104,9 @@ void			parse_width_precis(const char **format, t_format *frmt_struct)
 
 void			parse_flags(const char **format, t_format *frmt_struct)
 {
-	const char	*flags;
-	int			ret;
-	const char	*cur;
+	const char		*flags;
+	const char		*cur;
+	unsigned char	ret;
 
 	flags = "#0-+ ";
 	ret = 0;

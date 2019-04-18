@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/15 20:07:06 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/16 19:44:02 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 **	colors, fd, i td..
 */
 
-t_format		*initial()
+static t_format		*initial()
 {
 	t_format	*frmt;
 
@@ -57,7 +57,7 @@ t_format		*initial()
 	return (frmt);
 }
 
-static char		*forward(int index, t_format *format_struct, va_list args)
+static char		*dispatch(int index, t_format *format_struct, va_list args)
 {
 	static char	*(*p[16])();
 
@@ -76,10 +76,8 @@ static char		*forward(int index, t_format *format_struct, va_list args)
 	p[12] = flg_oct;
 	p[13] = flg_hex;
 	p[14] = flg_hex;
-	p[15] = flg_hex;
-	if (index != -1)
-		return (p[index](format_struct, args));
-	return (0);
+	p[15] = flg_pointer;
+	return (p[index](format_struct, args));
 }
 
 static char		*parser(const char **format, va_list args, size_t *len)
@@ -89,13 +87,17 @@ static char		*parser(const char **format, va_list args, size_t *len)
 	int			index;
 
 	format_struct = initial();
+	ret = 0;
 	parse_flags(format, format_struct);
 	parse_width_precis(format, format_struct);
 	parse_size_flag(format, format_struct);
 	index = get_conv(format, format_struct);
-	ret = forward(index, format_struct, args);
-	if (ret)
-		*len = (size_t)format_struct->width;
+	if (index != -1)
+	{
+		ret = dispatch(index, format_struct, args);
+		if (ret)
+			*len = (size_t)format_struct->width;
+	}
 	free(format_struct);
 	return (ret);
 }
@@ -115,7 +117,6 @@ static size_t	create_list(t_list **lst, const char *format, va_list args)
 			new = parser(&format, args, &len);
 			if (!new)
 				continue ;
-			len = ft_strlen(new);
 		}
 		else
 		{
