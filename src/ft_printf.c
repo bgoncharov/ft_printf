@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/16 19:44:02 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/17 19:50:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static t_format		*initial()
 
 static char		*dispatch(int index, t_format *format_struct, va_list args)
 {
-	static char	*(*p[16])();
+	static char	*(*p[17])();
 
 	p[0] = flg_char;
 	p[1] = flg_char;
@@ -77,6 +77,7 @@ static char		*dispatch(int index, t_format *format_struct, va_list args)
 	p[13] = flg_hex;
 	p[14] = flg_hex;
 	p[15] = flg_pointer;
+	p[17] = flg_float;
 	return (p[index](format_struct, args));
 }
 
