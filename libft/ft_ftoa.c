@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/18 21:58:16 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/18 22:26:18 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,19 @@ static void		ft_nbrcpy_p(long nb, int precision, char *str)
 		*str = (nb % 10 + '0');
 }
 
-static char		*fill_string(int sign, long intpart, long fraction,
-								int precision)
+static char		*fill_string(long intpart, long fraction, int precision)
 {
 	char	*str;
 	int		len_of_intpart;
-
+	
 	len_of_intpart = ft_numberlen(intpart);
-	if (sign)
-	{
-		str = ft_strnew(1 + len_of_intpart + 1 + precision);
-		*str = '-';
-		ft_nbrcpy_p(intpart, len_of_intpart, str + 1 + len_of_intpart - 1);
-		str[1 + len_of_intpart] = '.';
-		ft_nbrcpy_p(fraction, precision, str + 1 + len_of_intpart + precision);
-	}
-	else
-	{
-		str = ft_strnew(len_of_intpart + 1 + precision);
-		ft_nbrcpy_p(intpart, len_of_intpart, str + len_of_intpart - 1);
-		str[len_of_intpart] = '.';
-		ft_nbrcpy_p(fraction, precision, str + len_of_intpart + precision);
-	}
+
+	str = ft_strnew(len_of_intpart + 1 + precision);
+
+	ft_nbrcpy_p(intpart, len_of_intpart, str + len_of_intpart - 1);
+	ft_memcpy(str + len_of_intpart, ".", 1);
+	ft_nbrcpy_p(fraction, precision, str + len_of_intpart + precision); 
+
 	return (str);
 }
 
@@ -62,34 +53,26 @@ static long		get_fraction(int exp, long mantissa, int precision)
 {
 	int			index;
 	int			max;
-	double		multiple;
+	t_double	multiple;
 	double		fraction;
 
-	if (exp < 0)
-	{
-		multiple = (double)(unsigned long)ft_power(10, precision -
-				(ft_ceil((double)((-exp) - ((-exp) / 10)) / 3) -
-				(((-exp) % 10) ? 1 : 0)));
-	}
-	else
-		multiple = (double)(unsigned long)ft_power(10, precision);
 	index = 1;
 	if (exp < 0)
-		index += -(exp);
+		index += -(exp) - (mantissa ? 1 : 0);
+	multiple.d = (double)ft_power(10, precision);
 	max = ((precision + 1) * 3) + ft_ceil((double)((precision + 1) / 3));
 	fraction = 0;
-	if (exp < 0 && mantissa)
-		fraction += multiple / (1L << (index - 1));
 	while (index <= max)
 	{
 		if (mantissa & (1L << ((52 - exp) - index)))
-			fraction += multiple / (1L << index);
+			fraction += multiple.d / (1L << index);
 		++index;
 	}
+
 	return(ft_round(fraction));
 }
 
-static char		*make_string(int sign, int exp, long mantissa, int precision)
+static char		*make_string(int exp, long mantissa, int precision)
 {
 	long	intpart;
 	long	fraction;
@@ -97,12 +80,11 @@ static char		*make_string(int sign, int exp, long mantissa, int precision)
 
 	intpart = 0;
 	if (exp > 0)
-	{
 		intpart = (mantissa >> (52 - exp));
-		intpart |= 1 << (exp);
-	}
+
 	fraction = get_fraction(exp, mantissa, precision);
-	str = fill_string(sign, intpart, fraction, precision);
+
+	str = fill_string(intpart, fraction, precision);
 	return (str);
 }
 
@@ -115,10 +97,15 @@ char			*ft_ftoa(double nb, int precision)
 	char		*str;
 
 	unb.d = nb;
-	sign = !!(unb.l & 0x8000000000000000);
-	exp = ((unb.l >> 52) & 0x7ff);
+	sign = (unb.l & 0x8000000000000000);
+	exp = ((unb.l >> 52) & 0x7ff) - 1023;
 	mantissa = (unb.l & 0x000fffffffffffff);
-	exp -= 1023;
-	str = make_string(sign, exp, mantissa, precision);
+
+	(void)sign;
+
+	if (exp != 0x7FF && !(exp == 0 && mantissa == 0))
+		mantissa |= (1L << 52);
+	str = make_string(exp, mantissa, precision);
+
 	return (str);
 }

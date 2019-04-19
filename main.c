@@ -333,11 +333,12 @@ int	main(void)
 	*/
 
 	ft_printf("%f\n", 14.75);
-	ft_printf("%f\n", -14.75);
 	ft_printf("%.4f\n", 1997.0918);
 	ft_printf("%.9f\n", 217.4444444);
 	ft_printf("%.12lf\n", 0.000000000252628);
-	ft_printf("%.15lf\n", 0.000000000252628);
-	ft_printf("%.20lf\n", 0.000000000252628);
+	printf("%f\n", 14.75);
+	printf("%.4f\n", 1997.0918);
+	printf("%.9f\n", 217.4444444);
+	printf("%.12lf\n", 0.000000000252628);
 	return (0);
 }
