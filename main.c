@@ -316,7 +316,7 @@ int	main(void)
 	ft_printf("%#06x\n", 255);
 	printf("%#06x\n", 42);
 	printf("%#06x\n\n", 255);
-	*/
+	
 
 	ft_printf("");
 	ft_printf("%");
@@ -330,5 +330,14 @@ int	main(void)
 	printf("%.4f\n", 1997.0918);
 	printf("%.9f\n", 217.4444444);
 	printf("%.12lf\n", 0.000000000252628);
+	*/
+
+	ft_printf("%f\n", 14.75);
+	ft_printf("%f\n", -14.75);
+	ft_printf("%.4f\n", 1997.0918);
+	ft_printf("%.9f\n", 217.4444444);
+	ft_printf("%.12lf\n", 0.000000000252628);
+	ft_printf("%.15lf\n", 0.000000000252628);
+	ft_printf("%.20lf\n", 0.000000000252628);
 	return (0);
 }
