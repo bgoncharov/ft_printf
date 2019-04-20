@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 13:08:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 15:50:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char			*ft_ftoa(double nb, int precision)
 	long		intpart;
 
 	unb.d = nb;
-
 	exp = ((unb.l >> 52) & 0x7ff) - 1023;
 	mantissa = (unb.l & 0x000fffffffffffff);
 
