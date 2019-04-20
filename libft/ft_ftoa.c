@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 15:50:08 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 16:18:20 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		copy_fraction(char *str, double num, int precision, int offset)
 		++len_of_f;
 	}
 	fraction = ft_round(num);
-	ft_nbrcpy_p(fraction, len_of_f, str + offset + len_of_f); 
+	ft_nbrcpy_p(fraction, len_of_f, str + offset + len_of_f);
 	if (precision > len_of_f)
 		ft_nbrcpy_p(0, precision - len_of_f, str + offset + precision);
 }
