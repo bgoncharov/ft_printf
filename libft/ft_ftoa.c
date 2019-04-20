@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 16:18:20 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 16:24:28 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		copy_fraction(char *str, double num, int precision, int offset)
 	int		len_of_f;
 
 	len_of_f = 0;
-	while (len_of_f < precision && len_of_f < 17)
+	while (len_of_f < precision && (len_of_f + offset) < 17)
 	{
 		num *= 10;
 		++len_of_f;
@@ -81,18 +81,23 @@ char			*ft_ftoa(double nb, int precision)
 	long		intpart;
 
 	unb.d = nb;
-	exp = ((unb.l >> 52) & 0x7ff) - 1023;
+	exp = ((unb.l >> 52) & 0x7ff);
 	mantissa = (unb.l & 0x000fffffffffffff);
-
-	if (exp != 0x7FF && !(exp == 0 && mantissa == 0))
-		mantissa |= (1L << 52);
-	intpart = 0;
-	if (exp > 0)
-	{
-		if (exp > 52)
-			intpart = (mantissa << (exp - 52));
+	if (exp == 0x7ff)
+		if (mantissa)
+			return (ft_strdup("nan"));
 		else
-			intpart = (mantissa >> (52 - exp));
-	}
-	return (make_string((unb.d < 0), intpart, unb.d, precision));
+			if (unb.l & (1L << 63))
+				return (ft_strdup("-inf"));
+			else
+				return (ft_strdup("inf"));
+	else if (exp != 0)
+		mantissa |= (1L << 52);
+	exp -= 0x3ff;
+	intpart = 0;
+	if (52 < exp && exp < 64)
+		intpart = (mantissa << (exp - 52));
+	else if (0 < exp)
+		intpart = (mantissa >> (52 - exp));
+	return (make_string(((unb.l >> 63) & 1), intpart, unb.d, precision));
 }

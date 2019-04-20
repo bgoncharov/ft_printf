@@ -3,6 +3,12 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
+typedef union	u_double
+{
+	double		d;
+	long		l;
+}				t_double;
+
 int	main(void)
 {
 	/*
@@ -332,41 +338,14 @@ int	main(void)
 	printf("%.12lf\n", 0.000000000252628);
 	*/
 
-	ft_printf("%f\n", -14.75);
-	ft_printf("%.12lf\n", -0.000000000252628);
-	ft_printf("%f\n", 14.75);
-	ft_printf("%.4f\n", 1997.0918);
-	ft_printf("%.9f\n", 217.4444444);
-	ft_printf("%.3f\n", 5.0505000);
-	ft_printf("%.4f\n", 5.0505000);
-	ft_printf("%.5f\n", 5.0505000);
-	ft_printf("%.6f\n", 5.0505000);
-	ft_printf("%.7f\n", 5.0505000);
-	ft_printf("%.15f\n", 5.0505000000000);
-	ft_printf("%.12lf\n", 0.000000000252628);
-	ft_printf("%.15lf\n", 0.000000000252628);
-	ft_printf("%.18lf\n", 0.0000000000000252628);
-	ft_printf("%.25lf\n", 0.000000000000000002526289929);
-	ft_printf("%.25lf\n", 0.252628992900000000000000000);
-	ft_printf("%.25lf\n", 0.252628992932340986346278998);
-	ft_printf("%lf\n", 123456789123456789.625);
-	printf("%f\n", -14.75);
-	printf("%.12lf\n", -0.000000000252628);
-	printf("%f\n", 14.75);
-	printf("%.4f\n", 1997.0918);
-	printf("%.9f\n", 217.4444444);
-	printf("%.3f\n", 5.0505000);
-	printf("%.4f\n", 5.0505000);
-	printf("%.5f\n", 5.0505000);
-	printf("%.6f\n", 5.0505000);
-	printf("%.7f\n", 5.0505000);
-	printf("%.15f\n", 5.0505000000000);
-	printf("%.12lf\n", 0.000000000252628);
-	printf("%.15lf\n", 0.000000000252628);
-	printf("%.18lf\n", 0.0000000000000252628);
-	printf("%.25lf\n", 0.000000000000000002526289929);
-	printf("%.25lf\n", 0.252628992900000000000000000);
-	printf("%.25lf\n", 0.252628992932340986346278998);
-	printf("%lf\n", 123456789123456789.625);
+	ft_printf("\nNegative Zero\n");
+	t_double testprint;
+	testprint.l = (1L << 63);
+	ft_printf("\nft_printf:\n");
+	ft_printf("zero:	%lf\n", (double)0);
+	ft_printf("-zero:	%lf\n", testprint.d);
+	ft_printf("\nprintf:\n");
+	printf("zero:	%lf\n", (double)0);
+	printf("-zero:	%lf\n", testprint.d);
 	return (0);
 }
