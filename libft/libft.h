@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 20:01:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 16:39:22 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void				*ft_nmemset(void *b, int c, size_t len);
 int					ft_ceil(double roundee);
 int					ft_floor(double roundee);
 long				ft_power(int a, int b);
+double				ft_power_d(double a, int b);
 char				*ft_ftoa(double nb, int precision);
 long				ft_round(double roundee);
 long				ft_round_p(double roundee, int precision);
