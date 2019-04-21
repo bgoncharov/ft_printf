@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 18:54:42 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:06:24 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,33 @@ static void		ft_nbrcpy_p(long n, int precision, char *s)
 		*s = ((n % 10) + '0');
 }
 
-static void		get_parts(t_fp *f, double n, int sign, int precision)
+static t_fp		get_parts(double n, int sign, int precision)
 {
-	f->len_i = 0;
-	f->len_f = 0;
-	f->lead_zeros = 0;
-	f->trail_zeros = 0;
+	t_fp	f;
+
+	f.len_i = 0;
+	f.len_f = 0;
+	f.lead_zeros = 0;
+	f.trail_zeros = 0;
 	while (n >= (1UL << 63))
 	{
 		n /= 10;
-		++(f->trail_zeros);
+		++(f.trail_zeros);
 	}
-	f->integer = (f->trail_zeros) ? ft_round(n) : (long)n;
-	f->len_i = ft_numberlen(f->integer) + ((sign) ? 1 : 0);
-	while (f->lead_zeros + f->len_f < precision &&
-			((f->len_f + f->len_i + f->trail_zeros) < 17))
+	f.integer = (f.trail_zeros) ? ft_round(n) : (long)n;
+	f.len_i = ft_numberlen(f.integer) + ((sign) ? 1 : 0);
+	while (f.lead_zeros + f.len_f < precision &&
+			((f.len_f + f.len_i + f.trail_zeros) < 17))
 	{
 		n *= 10;
 		if ((n <= -1 || n >= 1) ||
-			(f->lead_zeros + f->len_f == precision - 1 && ft_round(n)))
-			++(f->len_f);
+			(f.lead_zeros + f.len_f == precision - 1 && ft_round(n)))
+			++(f.len_f);
 		else
-			++(f->lead_zeros);
+			++(f.lead_zeros);
 	}
-	f->fraction = ft_round(n);
+	f.fraction = ft_round(n);
+	return (f);
 }
 
 static char		*make_string(t_fp f, int sign, int precision)
@@ -114,6 +117,6 @@ char			*ft_ftoa(double n, int precision)
 		else
 			return (ft_strdup((sign) ? "-inf" : "inf"));
 	}
-	get_parts(&f, n, sign, precision);
+	f = get_parts(n, sign, precision);
 	return (make_string(f, sign, precision));
 }
