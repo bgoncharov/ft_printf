@@ -6,26 +6,22 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 19:07:50 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:18:38 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-typedef union	u_double
-{
-	double		d;
-	long		l;
-}				t_double;
+#define SIG_F (f.lead_zeros + f.len_f)
+#define SIG_I (f.len_i + f.trail_zeros)
 
 typedef	struct	s_fp
 {
-	long		integer;
+	long		integral;
 	long		fraction;
 	int			len_i;
-	int			len_f;
-	int			lead_zeros;
 	int			trail_zeros;
+	int			lead_zeros;
+	int			len_f;
 }				t_fp;
 
 static void		ft_nbrcpy_p(long n, int precision, char *s)
@@ -47,7 +43,6 @@ static t_fp		get_parts(double n, int sign, int precision)
 {
 	t_fp	f;
 
-	f.len_i = 0;
 	f.len_f = 0;
 	f.lead_zeros = 0;
 	f.trail_zeros = 0;
@@ -56,19 +51,19 @@ static t_fp		get_parts(double n, int sign, int precision)
 		n /= 10;
 		++(f.trail_zeros);
 	}
-	f.integer = (f.trail_zeros) ? ft_round(n) : (long)n;
-	f.len_i = ft_numberlen(f.integer) + ((sign) ? 1 : 0);
-	while (f.lead_zeros + f.len_f < precision &&
-			((f.len_f + f.len_i + f.trail_zeros) < 17))
+	f.integral = (f.trail_zeros) ? ft_round(n) : (long)n;
+	f.len_i = ft_numberlen(f.integral);
+	while (SIG_F < precision && (f.len_f + SIG_I) < 17)
 	{
 		n *= 10;
-		if ((n <= -1 || n >= 1) ||
-			(f.lead_zeros + f.len_f == precision - 1 && ft_round(n)))
+		if ((long)n || (SIG_F == precision - 1 && ft_round(n)))
 			++(f.len_f);
 		else
 			++(f.lead_zeros);
 	}
 	f.fraction = ft_round(n);
+	if (sign)
+		++(f.len_i);
 	return (f);
 }
 
@@ -76,43 +71,42 @@ static char		*make_string(t_fp f, int sign, int precision)
 {
 	char	*s;
 
-	s = ft_strnew(f.len_i + f.trail_zeros + 1 + precision);
+	s = ft_strnew(SIG_I + 1 + precision);
 	if (sign)
 	{
 		*s = '-';
-		ft_nbrcpy_p(f.integer, f.len_i - 1, s + f.len_i - 1);
+		ft_nbrcpy_p(f.integral, f.len_i - 1, s + f.len_i - 1);
 	}
 	else
-		ft_nbrcpy_p(f.integer, f.len_i, s + f.len_i - 1);
-	f.len_i = f.len_i + f.trail_zeros;
+		ft_nbrcpy_p(f.integral, f.len_i, s + f.len_i - 1);
 	if (f.trail_zeros)
-		ft_nbrcpy_p(0, f.trail_zeros, s + f.len_i - 1);
+		ft_nbrcpy_p(0, f.trail_zeros, s + SIG_I - 1);
 	if (precision)
-		s[f.len_i] = '.';
+		s[SIG_I] = '.';
 	if (f.lead_zeros)
-		ft_nbrcpy_p(0, f.lead_zeros, s + f.len_i + f.lead_zeros);
+		ft_nbrcpy_p(0, f.lead_zeros, s + SIG_I + f.lead_zeros);
 	if (f.len_f)
-		ft_nbrcpy_p(f.fraction, f.len_f, s + f.len_i + f.lead_zeros + f.len_f);
-	if (precision > f.len_f + f.lead_zeros)
-		ft_nbrcpy_p(0, precision - f.len_f, s + f.len_i + precision);
+		ft_nbrcpy_p(f.fraction, f.len_f, s + SIG_I + SIG_F);
+	if (precision > SIG_F)
+		ft_nbrcpy_p(0, precision - SIG_F, s + SIG_I + precision);
 	return (s);
 }
 
 char			*ft_ftoa(double n, int precision)
 {
-	t_double	doub;
+	t_double	unb;
 	t_fp		f;
 	int			sign;
-	int			exponent;
-	long		significand;
+	int			exp;
+	long		mantissa;
 
-	doub.d = n;
-	sign = (doub.l >> 63) & 1;
-	exponent = ((doub.l >> 52) & 0x7ff);
-	significand = (doub.l & 0x000fffffffffffff);
-	if (exponent == 0x7ff)
+	unb.d = n;
+	sign = (unb.l >> 63) & 1;
+	exp = ((unb.l >> 52) & 0x7ff);
+	mantissa = (unb.l & 0x000fffffffffffff);
+	if (exp == 0x7ff)
 	{
-		if (significand)
+		if (mantissa)
 			return (ft_strdup("nan"));
 		else
 			return (ft_strdup((sign) ? "-inf" : "inf"));
