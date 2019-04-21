@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 19:06:24 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:07:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		ft_nbrcpy_p(long n, int precision, char *s)
 			ft_nbrcpy_p(0, precision - 1, s - 1);
 	}
 	if (n < 0)
-		*s = (ft_abs(n % 10) + '0');
+		*s = (((n % 10) * -1) + '0');
 	else
 		*s = ((n % 10) + '0');
 }
