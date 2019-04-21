@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 18:24:52 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 18:54:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,116 +18,102 @@ typedef union	u_double
 	long		l;
 }				t_double;
 
-static void		ft_nbrcpy_p(long nb, int precision, char *str)
+typedef	struct	s_fp
+{
+	long		integer;
+	long		fraction;
+	int			len_i;
+	int			len_f;
+	int			lead_zeros;
+	int			trail_zeros;
+}				t_fp;
+
+static void		ft_nbrcpy_p(long n, int precision, char *s)
 {
 	if (precision > 1)
 	{
-		if (nb >= 10 || nb <= -10)
-			ft_nbrcpy_p(nb / 10, precision - 1, str - 1);
+		if (n >= 10 || n <= -10)
+			ft_nbrcpy_p(n / 10, precision - 1, s - 1);
 		else
-			ft_nbrcpy_p(0, precision - 1, str - 1);
+			ft_nbrcpy_p(0, precision - 1, s - 1);
 	}
-	if (nb < 0)
-		*str = (ft_abs(nb % 10) + '0');
+	if (n < 0)
+		*s = (ft_abs(n % 10) + '0');
 	else
-		*str = ((nb % 10) + '0');
+		*s = ((n % 10) + '0');
 }
 
-/*
-** Gather fraction part without bits
-*/
-
-static void		copy_fraction(char *str, double num, int precision, int offset)
+static void		get_parts(t_fp *f, double n, int sign, int precision)
 {
-	long	fraction;
-	int		len_f;
-	int		leading_zeros;
-
-	len_f = 0;
-	leading_zeros = 0;
-	while (leading_zeros + len_f < precision && (len_f + offset < 17))
+	f->len_i = 0;
+	f->len_f = 0;
+	f->lead_zeros = 0;
+	f->trail_zeros = 0;
+	while (n >= (1UL << 63))
 	{
-		num *= 10;
-		if (num < -1 || num > 1)
-			++len_f;
+		n /= 10;
+		++(f->trail_zeros);
+	}
+	f->integer = (f->trail_zeros) ? ft_round(n) : (long)n;
+	f->len_i = ft_numberlen(f->integer) + ((sign) ? 1 : 0);
+	while (f->lead_zeros + f->len_f < precision &&
+			((f->len_f + f->len_i + f->trail_zeros) < 17))
+	{
+		n *= 10;
+		if ((n <= -1 || n >= 1) ||
+			(f->lead_zeros + f->len_f == precision - 1 && ft_round(n)))
+			++(f->len_f);
 		else
-			++leading_zeros;
+			++(f->lead_zeros);
 	}
-	fraction = ft_round(num);
-	if (fraction > 0 && len_f == 0)
-		++len_f;
-	if (leading_zeros)
-		ft_nbrcpy_p(0, leading_zeros, str + offset + leading_zeros);
-	if (len_f)
-		ft_nbrcpy_p(fraction, len_f, str + offset + leading_zeros + len_f);
-	if (precision > len_f + leading_zeros)
-		ft_nbrcpy_p(0, precision - len_f, str + offset + precision);
+	f->fraction = ft_round(n);
 }
 
-static long		get_intpart(double num, int *trailing_zeros)
+static char		*make_string(t_fp f, int sign, int precision)
 {
-	long	intpart;
+	char	*s;
 
-	*trailing_zeros = 0;
-	while (num >= (1UL << 63))
-	{
-		num /= 10;
-		++(*trailing_zeros);
-	}
-	if (*trailing_zeros)
-		intpart = ft_round(num);
-	else
-		intpart = (long)num;
-	return (intpart);
-}
-
-static char		*make_string(int sign, double num, int precision)
-{
-	long	intpart;
-	int		len_i;
-	int		trailing_zeros;
-	char	*str;
-
-	intpart = get_intpart(num, &trailing_zeros);
-	len_i = ft_numberlen(intpart);
+	s = ft_strnew(f.len_i + f.trail_zeros + 1 + precision);
 	if (sign)
 	{
-		++len_i;
-		str = ft_strnew(len_i + trailing_zeros + 1 + precision);
-		*str = '-';
-		ft_nbrcpy_p(intpart, len_i - 1, str + len_i - 1);
+		*s = '-';
+		ft_nbrcpy_p(f.integer, f.len_i - 1, s + f.len_i - 1);
 	}
 	else
-	{
-		str = ft_strnew(len_i + trailing_zeros + 1 + precision);
-		ft_nbrcpy_p(intpart, len_i, str + len_i - 1);
-	}
-	if (trailing_zeros)
-		ft_nbrcpy_p(0, trailing_zeros, str + len_i + trailing_zeros - 1);
+		ft_nbrcpy_p(f.integer, f.len_i, s + f.len_i - 1);
+	f.len_i = f.len_i + f.trail_zeros;
+	if (f.trail_zeros)
+		ft_nbrcpy_p(0, f.trail_zeros, s + f.len_i - 1);
 	if (precision)
-		str[len_i + trailing_zeros] = '.';
-	copy_fraction(str, num, precision, len_i + trailing_zeros);
-	return (str);
+		s[f.len_i] = '.';
+	if (f.lead_zeros)
+		ft_nbrcpy_p(0, f.lead_zeros, s + f.len_i + f.lead_zeros);
+	if (f.len_f)
+		ft_nbrcpy_p(f.fraction, f.len_f, s + f.len_i + f.lead_zeros + f.len_f);
+	if (precision > f.len_f + f.lead_zeros)
+		ft_nbrcpy_p(0, precision - f.len_f, s + f.len_i + precision);
+	return (s);
 }
 
-char			*ft_ftoa(double nb, int precision)
+char			*ft_ftoa(double n, int precision)
 {
-	t_double	unb;
-	int			exp;
-	long		mantissa;
+	t_double	doub;
+	t_fp		f;
+	int			sign;
+	int			exponent;
+	long		significand;
 
-	unb.d = nb;
-	exp = ((unb.l >> 52) & 0x7ff);
-	mantissa = (unb.l & 0x000fffffffffffff);
-	if (exp == 0x7ff)
+	doub.d = n;
+	sign = (doub.l >> 63) & 1;
+	exponent = ((doub.l >> 52) & 0x7ff);
+	significand = (doub.l & 0x000fffffffffffff);
+	if (exponent == 0x7ff)
 	{
-		if (mantissa)
+		if (significand)
 			return (ft_strdup("nan"));
 		else
-			if (unb.l & (1L << 63))
-				return (ft_strdup("-inf"));
-			else
-				return (ft_strdup("inf"));
+			return (ft_strdup((sign) ? "-inf" : "inf"));
 	}
-	return (make_string(((unb.l >> 63) & 1), nb, precision));
+	get_parts(&f, n, sign, precision);
+	return (make_string(f, sign, precision));
 }
