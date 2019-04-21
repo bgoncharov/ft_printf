@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:12:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 18:10:05 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 18:23:18 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,5 @@ long	ft_round(double roundee)
 		else
 			rounded = (long)roundee;
 	}
-	return (rounded);
-}
-
-double	ft_round_d(double roundee)
-{
-	double	rounded;
-
-	if (roundee < (1L << 63))
-		rounded = (double)ft_round(roundee);
-	else
-		rounded = roundee;
 	return (rounded);
 }
