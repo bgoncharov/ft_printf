@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:12:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 20:01:47 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/20 18:10:05 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,13 @@ long	ft_round(double roundee)
 	return (rounded);
 }
 
-long	ft_round_p(double roundee, int precision)
+double	ft_round_d(double roundee)
 {
-	long	rounded;
-	int		difference;
+	double	rounded;
 
-	difference = ft_numberlen((long)roundee) - precision;
-	while (difference-- > 0)
-		roundee /= 10;
-	if (roundee >= 0)
-	{
-		if ((roundee - (long)roundee) * 10 >= 5)
-			rounded = (long)roundee + 1;
-		else
-			rounded = (long)roundee;
-	}
+	if (roundee < (1L << 63))
+		rounded = (double)ft_round(roundee);
 	else
-	{
-		if ((roundee - (long)roundee) * -10 >= 5)
-			rounded = (long)roundee - 1;
-		else
-			rounded = (long)roundee;
-	}
-	difference = ft_numberlen((long)roundee) - precision;
-	while (difference-- > 0)
-		rounded *= 10;
+		rounded = roundee;
 	return (rounded);
 }
