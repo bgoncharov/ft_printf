@@ -22,6 +22,8 @@ int	main(void)
 	ft_printf("i: %d\n", i);
 	ft_printf("String: \"%s\"\nInt: %d\n", "stringy string", 1990);
 	ft_printf("%d %ld %lld\n", 123, 1234, 12345);
+	ft_printf("int: %+015.7d, int2: %-0015.8d, testing some %5% shits % %\n", i, 17);
+	ft_printf("%# 05.3d %.d %d %d gg!\n", 1, -2, 33, 42);
 	*/
 	/*
 	// poop tests
@@ -416,13 +418,53 @@ int	main(void)
 	printf("%+06d\n", -i);
 	printf("%lu\n", 299999999UL);
 	printf("% 010d\n", 135);
+	printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 0, 0, 0, 0, 0);
+	printf("%o\t%#o\t%.o\t%#.o\t%#6.4o\n", 7, 7, 7, 7, 7);
+	printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 8, 8, 8, 8, 512);
+	printf("%o\t%#o\t%.o\t%#.o\t%#.2o\n", 8, 8, 8, 8, 512);
+	printf("\n");
+	printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 0, 0, 0, 0, 0);
+	printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 7, 7, 7, 7, 7);
+	printf("%d\t%+d\t%.d\t%+.d\t%+.4d\n", 8, 8, 8, 8, 8);
+	printf("\n");
+	printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 0, 0, 0, 0, 0);
+	printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 7, 7, 7, 7, 7);
+	printf("%x\t%#x\t%.x\t%#.x\t%#.4x\n", 8, 8, 8, 8, 8);
+	printf("\n");
+	printf("%+d\n", 10);
+	printf("%+d\n", 0);
+	printf("%+d\n", -10);
+	printf("1234567890\n");
+	printf("%+10.8d\n", 10);
+	printf("%+10.8d\n", 0);
+	printf("%+10.8d\n", -10);
+	printf("1234567890\n");
+	printf("%+8.8d\n", 10);
+	printf("%+9.8d\n", 0);
+	printf("%+10.8d\n", -10);
+	printf("1234567890\n");
+	printf("%+8d\n", 10);
+	printf("%+9d\n", 0);
+	printf("%+10d\n", -10);
+	printf("1234567890\n");
+	printf("%+.8d\n", 10);
+	printf("%+.9d\n", 0);
+	printf("%+.10d\n", -10);
+	printf("1234567890\n");
+	printf("%+8.10d\n", 10);
+	printf("%+8.10d\n", 0);
+	printf("%+8.10d\n", -10);
+	printf("1234567890\n");
+	printf("%8.10d\n", 10);
+	printf("%8.10d\n", 0);
+	printf("%8.10d\n", -10);
+	printf("1234567890\n");
+	printf("%06.2d\n", 512);
+	printf("%Test\n");
 	*/
 
-	//ft_printf("int: %+015.7d, int2: %-0015.8d, testing some %5% shits % %\n", i, 17);
-	//ft_printf("%# 05.3d %.d %d %d gg!\n", 1, -2, 33, 42);
-
-	// versus test with width, precision, and -+ 0 flags
 	/*
+	// versus test with width, precision, and -+ 0 flags
 	ft_printf("3d:      |%3d|\n", 42890);
 	ft_printf("3d:      |%3d|\n", -42890);
 	ft_printf("2d:      |%2d|\n", i);
