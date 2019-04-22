@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 19:16:13 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 18:39:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 10:27:23 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static void	append_flags(char *str, t_format *frmt)
+static void					append_flags(char *str, t_format *frmt)
 {
 	if (!(frmt->flags & MINUS))
 		str += (frmt->width - frmt->precision);
@@ -22,7 +22,7 @@ static void	append_flags(char *str, t_format *frmt)
 		*str++ = '0';
 }
 
-static void	ft_numcpy_hex(unsigned long long num, char *str)
+static void					ft_numcpy_hex(unsigned long long num, char *str)
 {
 	if (num >= 16)
 		ft_numcpy_hex(num / 16, str - 1);
@@ -32,7 +32,7 @@ static void	ft_numcpy_hex(unsigned long long num, char *str)
 		*str = ((num % 16) + '0');
 }
 
-char					*flg_pointer(t_format *frmt, va_list args)
+char						*flg_pointer(t_format *frmt, va_list args)
 {
 	char				*str;
 	unsigned long long	num;

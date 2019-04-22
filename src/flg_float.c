@@ -6,17 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:31:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/18 21:51:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 10:19:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-typedef union	u_double
-{
-	double		d;
-	long		l;
-}				t_double;
 
 static double	get_num(char length, va_list args)
 {
@@ -32,12 +26,12 @@ static double	get_num(char length, va_list args)
 	return (num);
 }
 
-char			*flg_float(t_format *frmt, va_list valist)
+char			*flg_float(t_format *frmt, va_list args)
 {
 	double	num;
 	char	*str;
 
-	num = get_num(frmt->lenght, valist);
+	num = get_num(frmt->lenght, args);
 	if (frmt->precision == -1)
 		frmt->precision = 6;
 	str = ft_ftoa(num, frmt->precision);

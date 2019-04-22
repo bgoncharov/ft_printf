@@ -4,12 +4,6 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-typedef union	u_double
-{
-	double		d;
-	long		l;
-}				t_double;
-
 int	main(void)
 {
 	/*
@@ -247,7 +241,6 @@ int	main(void)
 	printf("%.300lf\n", 1.0e-300);
 	printf("%.330lf\n", 2.0e-323);
 	*/
-	/*
 	// Normal tests
 	ft_printf("\nNormal tests\n");
 	ft_printf("\nft_printf:\n");
@@ -266,7 +259,6 @@ int	main(void)
 	printf("%.12lf\n", 0.000000000252628);
 	printf("%.15lf\n", 0.000000000252628);
 	printf("%.20lf\n", 0.000000000252628);
-	*/
 	/*
 	// 5.0505 tests
 	ft_printf("\n5.0505 tests\n");
@@ -324,10 +316,10 @@ int	main(void)
 	printf("%.2f\n", 2.3650);
 	*/
 
-	/*
 	// Pointer tests
 	ft_printf("\nPointer tests\n");
 
+	int		p = 900;
 	char	c = 0;
 	char	*str = "pouet";
 
@@ -354,7 +346,6 @@ int	main(void)
 	printf("%p\n", str);
 	str = ft_strdup("Coucou les haricots !");
 	printf("%p\n", str);
-	*/
 	/*
 	// Pointer flag tests
 	int		p = 900;
