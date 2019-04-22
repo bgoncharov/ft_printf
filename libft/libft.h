@@ -6,13 +6,14 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/20 19:18:35 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 10:54:38 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <wchar.h>
 
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *src);

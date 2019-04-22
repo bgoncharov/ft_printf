@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 10:19:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 10:53:14 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PLUS 0x8
 # define SPACE 0x10
 
-# define CONV "cCsS%dDiuUboOxXpf"
+# define CONV "cCsS%dDiuUboOxXpfF"
 
 typedef struct		s_format
 {
