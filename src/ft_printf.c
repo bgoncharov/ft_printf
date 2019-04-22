@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/18 23:08:03 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 10:46:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static char		*dispatch(int index, t_format *format_struct, va_list args)
 	p[14] = flg_hex;
 	p[15] = flg_pointer;
 	p[16] = flg_float;
+	p[17] = flg_float;
 	return (p[index](format_struct, args));
 }
 
