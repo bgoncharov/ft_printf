@@ -6,28 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/07 20:30:57 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:00:38 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-/*
-** correttly cut the string
-static void add_prec(int prec, char **str)
-{
-	int len;
-	char *new;
-
-	len = ft_strlen(*str);
-	if ((prec != -1) && len > prec)
-	{
-		new = ft_strndup(*str, prec);
-		ft_strdel(str);
-		*str = new;
-	}
-}
-*/
 
 static void	add_width(int width, char **str, int left)
 {
@@ -69,7 +52,8 @@ char *flg_char(t_format *frmt, va_list args)
 	char c;
 	char *new;
 
-	//print_params(*fmt_struct);
+	if (frmt->lenght == 'l')
+		return (flg_wchar(frmt, args));
 	c = (char)va_arg(args, int);
 	if (!c)
 		new = ft_strdup("^@");
@@ -84,7 +68,8 @@ char *flg_str(t_format *frmt, va_list args)
 	char *new;
 	int len;
 
-	//print_params(*fmt_struct);
+	if (frmt->lenght == 'l')
+		return (flg_wstr(frmt, args));
 	str = va_arg(args, char *);
 	if (!str)
 	{

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 10:52:15 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 10:53:12 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:13:41 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,49 +22,50 @@ static int	get_bytes(wchar_t wc)
 	return ((i > 7) ? ((i + 3) / 5) : 1);
 }
 
-char		*conv_utf8_char(wchar_t wc, char *s)
+char		*conv_utf8_char(wchar_t wchar, char *str)
 {
 	char	*cur;
 	int		bytes;
 
-	bytes = get_bytes(wc);
-	if (!s && wc)
-		s = ft_strnew(bytes);
-	if (!wc || !s)
-		return ((!wc) ? ft_strnew(1) : 0);
-	cur = s + bytes - 1;
+	bytes = get_bytes(wchar);
+	if (!str && wchar)
+		str = ft_strnew(bytes);
+	if (!wchar || !str)
+		return ((!wchar) ? ft_strnew(1) : 0);
+	cur = str + bytes - 1;
 	if (bytes > 1)
-		while (cur >= s)
+		while (cur >= str)
 		{
-			*cur |= (!(cur - s) ? (0xFF << (8 - bytes)) : 0x80);
-			*cur |= (wc & 0x3F);
-			wc = wc >> 6;
-			cur = (cur - s) ? (cur - 1) : 0;
+			*cur |= (!(cur - str) ? (0xFF << (8 - bytes)) : 0x80);
+			*cur |= (wchar & 0x3F);
+			wchar = wchar >> 6;
+			cur = (cur - str) ? (cur - 1) : 0;
 		}
 	else
-		*cur = (char)wc;
-	return (s);
+		*cur = (char)wchar;
+	return (str);
 }
 
-char		*conv_utf8_str(wchar_t *ws, char *s)
+char		*conv_utf8_str(wchar_t *wstr)
 {
+	char	*str;
 	int		bytes;
 	int		totalbytes;
 
 	totalbytes = 0;
-	if (!ws)
+	if (!wstr)
 		return (0);
-	while (ws && *ws)
-		totalbytes += get_bytes(*ws++);
-	s = ft_strnew(totalbytes);
-	s += totalbytes;
+	while (wstr && *wstr)
+		totalbytes += get_bytes(*wstr++);
+	str = ft_strnew(totalbytes);
+	str += totalbytes;
 	while (totalbytes)
 	{
-		--ws;
-		bytes = get_bytes(*ws);
+		--wstr;
+		bytes = get_bytes(*wstr);
 		totalbytes -= bytes;
-		s -= bytes;
-		s = conv_utf8_char(*ws, s);
+		str -= bytes;
+		str = conv_utf8_char(*wstr, str);
 	}
-	return (s);
+	return (str);
 }

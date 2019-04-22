@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 10:54:38 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:13:54 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,8 @@ long				ft_power(int a, int b);
 double				ft_power_d(double a, int b);
 char				*ft_ftoa(double nb, int precision);
 long				ft_round(double roundee);
+char				*conv_utf8_char(wchar_t wc, char *s);
+char				*conv_utf8_str(wchar_t *ws, char *s);
+static int			get_bytes(wchar_t wc);
 
 #endif

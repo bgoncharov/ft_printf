@@ -241,6 +241,7 @@ int	main(void)
 	printf("%.300lf\n", 1.0e-300);
 	printf("%.330lf\n", 2.0e-323);
 	*/
+	/*
 	// Normal tests
 	ft_printf("\nNormal tests\n");
 	ft_printf("\nft_printf:\n");
@@ -259,6 +260,7 @@ int	main(void)
 	printf("%.12lf\n", 0.000000000252628);
 	printf("%.15lf\n", 0.000000000252628);
 	printf("%.20lf\n", 0.000000000252628);
+	*/
 	/*
 	// 5.0505 tests
 	ft_printf("\n5.0505 tests\n");
@@ -316,10 +318,24 @@ int	main(void)
 	printf("%.2f\n", 2.3650);
 	*/
 
+	/*
+	// Scientific notation tests
+	printf("%e\n", 12.234);
+	*/
+
+	// Unicode tests
+	ft_printf("%S\n", L"\u03c0test\u03c0");
+	ft_printf("%ls\n", L"\u03c0test\u03c0");
+
+	/*
+	ft_printf("%x\n", -42);
+	printf("%x\n", -42);
+	*/
+
+	/*
 	// Pointer tests
 	ft_printf("\nPointer tests\n");
 
-	int		p = 900;
 	char	c = 0;
 	char	*str = "pouet";
 
@@ -346,6 +362,7 @@ int	main(void)
 	printf("%p\n", str);
 	str = ft_strdup("Coucou les haricots !");
 	printf("%p\n", str);
+	*/
 	/*
 	// Pointer flag tests
 	int		p = 900;
