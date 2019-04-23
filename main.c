@@ -435,6 +435,14 @@ int		main(void)
 	*/
 
 	/*
+	// Binary tests
+	ft_printf("%b\n", 42);
+	ft_printf("%b\n", -42);
+	ft_printf("%#b\n", 42);
+	ft_printf("%9b\n", 42);
+	*/
+
+	/*
 	// testing standard printf
 	printf("%10.d\n", i);
 	printf("%p\n", (void *)0);
