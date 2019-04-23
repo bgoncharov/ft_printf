@@ -87,6 +87,25 @@ int		main(void)
 	ft_printf("|%-2.10c|\n", 0);
 	*/
 	/*
+	// Unicode precision and width
+	ft_printf("|%ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%.3ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%9ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%9.3ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%-9ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%-9.3ls|\n", L"\u03c0test\u03c0");
+	ft_printf("|%C|\n", L'\U0001f47d');
+	ft_printf("|%3C|\n", L'\U0001f47d');
+	ft_printf("|%-3C|\n", L'\U0001f47d');
+	ft_printf("|%9.3C|\n", L'\U0001f47d');
+	ft_printf("|%-9.3C|\n", L'\U0001f47d');
+	ft_printf("|%C|\n", L'\u03c0');
+	ft_printf("|%3C|\n", L'\u03c0');
+	ft_printf("|%-3C|\n", L'\u03c0');
+	ft_printf("|%9.3C|\n", L'\u03c0');
+	ft_printf("|%-9.3C|\n", L'\u03c0');
+	*/
+	/*
 	// tests with precision and width for ints
 	ft_printf("|%.5u|, 99\n", i);
 	ft_printf("|%.0u|, 99\n", i);
@@ -332,6 +351,16 @@ int		main(void)
 	printf("%.6f\n", 1.1230985);
 	printf("%.2f\n", 2.3650);
 	*/
+	/*
+	// Width and precision for floating points
+	ft_printf("|%f|\n", 12.345000000);
+	ft_printf("|%12f|\n", 12.345000000);
+	ft_printf("|%19.4f|\n", 12.345000000);
+	ft_printf("|%4f|\n", 12.345000000);
+	ft_printf("|%-12f|\n", 12.345000000);
+	ft_printf("|%-19.4f|\n", 12.345000000);
+	ft_printf("|%-4f|\n", 12.345000000);
+	*/
 
 	/*
 	// Scientific notation tests
@@ -571,23 +600,9 @@ int		main(void)
 	ft_printf("%lld\n", 9223372036854775807);
 	*/
 
-	ft_printf("|%ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%.3ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%9ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%9.3ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%-9ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%-9.3ls|\n", L"\u03c0test\u03c0");
-	ft_printf("|%C|\n", L'\U0001f47d');
-	ft_printf("|%3C|\n", L'\U0001f47d');
-	ft_printf("|%-3C|\n", L'\U0001f47d');
-	ft_printf("|%9.3C|\n", L'\U0001f47d');
-	ft_printf("|%-9.3C|\n", L'\U0001f47d');
-	ft_printf("|%C|\n", L'\u03c0');
-	ft_printf("|%3C|\n", L'\u03c0');
-	ft_printf("|%-3C|\n", L'\u03c0');
-	ft_printf("|%9.3C|\n", L'\u03c0');
-	ft_printf("|%-9.3C|\n", L'\u03c0');
+
 	/*
+	// New nbrcpy tests
 	char	*str;
 
 	str = ft_strinit(9, ' ');
