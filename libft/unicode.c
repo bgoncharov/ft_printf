@@ -6,11 +6,21 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 10:52:15 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 11:13:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:41:12 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+size_t		ft_wstrlen(const wchar_t *str)
+{
+	size_t i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
 
 static int	get_bytes(wchar_t wc)
 {
@@ -52,9 +62,9 @@ char		*conv_utf8_str(wchar_t *wstr)
 	int		bytes;
 	int		totalbytes;
 
-	totalbytes = 0;
 	if (!wstr)
 		return (0);
+	totalbytes = 0;
 	while (wstr && *wstr)
 		totalbytes += get_bytes(*wstr++);
 	str = ft_strnew(totalbytes);

@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 18:48:40 by bogoncha          #+#    #+#              #
-#    Updated: 2019/04/17 19:27:01 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/04/22 11:32:37 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c \
 	 ft_lstiter.c ft_lstmap.c ft_isblank.c ft_str_is_alpha.c ft_str_is_lowercase.c ft_str_is_numeric.c \
 	 ft_str_is_printable.c ft_str_is_uppercase.c ft_strlowcase.c ft_strupcase.c ft_size_of_word.c \
 	 ft_itoa_base.c ft_dstrlen.c ft_lstputstr.c ft_strinitial.c ft_math.c ft_numberlen.c ft_numberlen_base.c \
-	 ft_strupper.c ft_nmemset.c ft_rounding.c ft_power.c ft_ftoa.c
+	 ft_strupper.c ft_nmemset.c ft_rounding.c ft_power.c ft_ftoa.c unicode.c
 
 OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o \
 	 ft_isalpha.o ft_isascii.o ft_isdigit.o ft_islower.o ft_isprint.o \
@@ -46,7 +46,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o \
 	 ft_lstiter.o ft_lstmap.o ft_isblank.o ft_str_is_alpha.o ft_str_is_lowercase.o ft_str_is_numeric.o \
 	 ft_str_is_printable.o ft_str_is_uppercase.o ft_strlowcase.o ft_strupcase.o ft_size_of_word.o \
 	 ft_itoa_base.o ft_dstrlen.o ft_lstputstr.o ft_strinitial.o ft_math.o ft_numberlen.o ft_numberlen_base.o \
-	 ft_strupper.o ft_nmemset.o ft_rounding.o ft_power.o ft_ftoa.o
+	 ft_strupper.o ft_nmemset.o ft_rounding.o ft_power.o ft_ftoa.o unicode.o
 
 INCLUDES=./
 

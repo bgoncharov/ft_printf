@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:02 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 11:07:40 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:37:01 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char		*dispatch(int index, t_format *format_struct, va_list args)
 	static char	*(*p[18])();
 
 	p[0] = flg_char;
-	p[1] = flg_wchar;
+	p[1] = flg_char;
 	p[2] = flg_str;
 	p[3] = flg_wstr;
 	p[4] = flg_percent;

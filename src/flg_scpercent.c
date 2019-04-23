@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 11:00:38 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:37:59 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char *flg_char(t_format *frmt, va_list args)
 	char c;
 	char *new;
 
-	if (frmt->lenght == 'l')
-		return (flg_wchar(frmt, args));
 	c = (char)va_arg(args, int);
 	if (!c)
 		new = ft_strdup("^@");
