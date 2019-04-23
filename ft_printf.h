@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 20:21:06 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:50:18 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PLUS 0x8
 # define SPACE 0x10
 
-# define CONV "cCsS%dDiuUboOxXpfF"
+# define CONV "cCsS%dDiuUboOxXpfFeE"
 
 typedef struct		s_format
 {
@@ -51,6 +51,7 @@ char				*flg_uint(t_format *frmt, va_list args);
 char				*flg_float(t_format *frmt, va_list args);
 char				*flg_wstr(t_format *frmt, va_list args);
 char				*flg_wchar(t_format *frmt, va_list args);
+char				*flg_scientific(t_format *frmt, va_list args);
 
 /* parse functions */
 int					get_conv(const char **format, t_format *frmt_struct);
