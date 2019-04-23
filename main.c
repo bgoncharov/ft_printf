@@ -6,7 +6,7 @@
 
 void	ft_nbrcpy_p(long nb, int precision, char *str)
 {
-	if (precision > (int)ft_numlen(nb))
+	if (precision > (int)ft_numberlen(nb))
 	{
 		*(str + precision - 1) = '0';
 		ft_nbrcpy_p(nb, precision - 1, str);
