@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 20:48:21 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 20:53:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:15:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char			*flg_scientific(t_format *frmt, va_list args)
 	nb = get_num(frmt->lenght, args);
 	if (frmt->precision == -1)
 		frmt->precision = 6;
-	str = ft_ftoa(nb, frmt->precision);
+	str = ft_ftosn(nb, frmt->precision);
 	len = ft_strlen(str);
 	if (frmt->width > len)
 		str = addspaces(&str, frmt->width - len, frmt->flags & MINUS);

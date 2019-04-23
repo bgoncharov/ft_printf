@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 20:19:26 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:16:46 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ long				ft_round(double roundee);
 char				*conv_utf8_str(wchar_t *wstr);
 char				*conv_utf8_char(wchar_t wchar, char *str);
 size_t				ft_wstrlen(const wchar_t *str);
+char				*ft_ftosn(double nb, int precision);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 22:39:54 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 22:47:14 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:15:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void		nbrcpy_p(long nb, int precision, char *str)
 	int			len;
 	int			i;
 
-	len = ft_numlen(nb);
+	len = ft_numberlen(nb);
 	i = 0;
-	multiplier = ft_pow(10, len - 1);
+	multiplier = ft_power(10, len - 1);
 	while (str[i] && i < precision)
 	{
 		if (i < (precision - len))
@@ -41,7 +41,7 @@ static t_fp		get_parts(double nb, int *exponent, int precision)
 
 	if (precision > 15)
 		precision = 15;
-	len = ft_numlen((long)nb);
+	len = ft_numberlen((long)nb);
 	while (nb && (nb > (1UL << 63) || len != precision + 1))
 	{
 		if (nb > (1UL << 63) || len > precision + 1)
@@ -54,10 +54,10 @@ static t_fp		get_parts(double nb, int *exponent, int precision)
 			nb *= 10;
 			--(*exponent);
 		}
-		len = ft_numlen((long)nb);
+		len = ft_numberlen((long)nb);
 	}
-	f.integral = ft_round(nb) / ft_pow(10, precision);
-	f.fraction = ft_round(nb) - (f.integral * (long)ft_pow(10, precision));
+	f.integral = ft_round(nb) / ft_power(10, precision);
+	f.fraction = ft_round(nb) - (f.integral * (long)ft_power(10, precision));
 	if (nb)
 		*exponent += precision;
 	return (f);
@@ -68,8 +68,8 @@ static char		*make_string(t_fp f, int sign, int exponent, int precision)
 	char	*str;
 	char	*cur;
 
-	str = ft_strinit('0', sign + 3 + ((precision) ? precision + 1 : 0) +
-		((ft_numlen(exponent) < 2) ? 2 : ft_numlen(exponent)));
+	str = ft_strinitial(sign + 3 + ((precision) ? precision + 1 : 0) +
+		((ft_numberlen(exponent) < 2) ? 2 : ft_numberlen(exponent)), '0');
 	cur = str;
 	if (sign)
 		*cur++ = '-';
@@ -86,8 +86,8 @@ static char		*make_string(t_fp f, int sign, int exponent, int precision)
 		ft_strncpy(str + sign + ((precision) ? precision + 1 : 0) + 1, "e+", 2);
 	else
 		ft_strncpy(str + sign + ((precision) ? precision + 1 : 0) + 1, "e-", 2);
-	cur = str + ft_strlen(str) - ft_numlen(exponent);
-	nbrcpy_p(exponent, ft_numlen(exponent), cur);
+	cur = str + ft_strlen(str) - ft_numberlen(exponent);
+	nbrcpy_p(exponent, ft_numberlen(exponent), cur);
 	return (str);
 }
 

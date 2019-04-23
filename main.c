@@ -362,10 +362,9 @@ int		main(void)
 	ft_printf("|%-4f|\n", 12.345000000);
 	*/
 
-	/*
 	// Scientific notation tests
-	printf("%e\n", 12.234);
-	*/
+	ft_printf("%e\n", 12.234);
+	ft_printf("%.2e\n", 42.42);
 
 	/*
 	// Unicode tests
@@ -374,6 +373,14 @@ int		main(void)
 	ft_printf("%S\n", 0);
 	ft_printf("%C\n", 0);
 	ft_printf("%lc\n", L'\U0001f47d');
+	*/
+
+	/*
+	// Binary tests
+	ft_printf("%b\n", 42);
+	ft_printf("%b\n", -42);
+	ft_printf("%#b\n", 42);
+	ft_printf("%9b\n", 42);
 	*/
 
 	/*
@@ -432,14 +439,6 @@ int		main(void)
 	printf("%-15p\n", &p);
 	printf("%15p\n", &p);
 	printf("%20p\n", &p);
-	*/
-
-	/*
-	// Binary tests
-	ft_printf("%b\n", 42);
-	ft_printf("%b\n", -42);
-	ft_printf("%#b\n", 42);
-	ft_printf("%9b\n", 42);
 	*/
 
 	/*
