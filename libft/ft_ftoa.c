@@ -6,23 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:24:25 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 10:14:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:18:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#define SIG_F (f.lead_zeros + f.len_f)
-#define SIG_I (f.len_i + f.trail_zeros)
-
-typedef	struct	s_fp
-{
-	long		integral;
-	long		fraction;
-	int			len_i;
-	int			trail_zeros;
-	int			lead_zeros;
-	int			len_f;
-}				t_fp;
 
 static void		ft_nbrcpy_p(long n, int precision, char *s)
 {

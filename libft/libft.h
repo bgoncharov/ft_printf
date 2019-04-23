@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 19:41:32 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:19:26 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 # define LIBFT_H
 # include <string.h>
 # include <wchar.h>
+
+typedef	struct	s_fp
+{
+	long		integral;
+	long		fraction;
+	int			len_i;
+	int			trail_zeros;
+	int			lead_zeros;
+	int			len_f;
+}				t_fp;
+#	define SIG_F (f.lead_zeros + f.len_f)
+#	define SIG_I (f.len_i + f.trail_zeros)
 
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *src);
