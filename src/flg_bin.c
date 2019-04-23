@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 19:20:29 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/15 21:23:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:45:05 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_numcpy_bin(unsigned long long num, char *str)
 {
 	if (num >= 2)
 		ft_numcpy_bin(num / 2, str - 1);
-	*str = (num % 2 + '0');
+	*str = ((num % 2) + '0');
 }
 
 static char	*num_format(t_format *frmt, unsigned long long num, int len)
@@ -99,5 +99,7 @@ char		*flg_bin(t_format *frmt, va_list args)
             ft_numcpy_bin(num, new + (frmt->width - 1));
     }
 	append_flags(new, frmt, num, len);
+	if (ft_isupper(frmt->conv))
+		ft_strupper(new);
 	return (new);
 }
