@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 22:52:14 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:57:41 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void				parse_size_flag(const char **format, t_format *frmt_struct);
 
 /* printf */
 int					ft_printf(const char *format, ...);
-
+int					ft_sprintf(char **str, const char *format, ...);
+int					ft_printfd(int fd, const char *format, ...);
+char				*combine_list(t_list *list, int size_of_list);
+size_t		create_list(t_list **lst, const char *format, va_list args);
 
 #endif
