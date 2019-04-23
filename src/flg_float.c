@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 19:31:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 20:17:43 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:21:49 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		*addspaces(char **str, int spaces, int left)
 	char	*newstr;
 
 	len_str = ft_strlen(*str);
-	newstr = ft_strinit(len_str + spaces, ' ');
+	newstr = ft_strinitial(len_str + spaces, ' ');
 	if (left)
 		ft_strncpy(newstr, *str, len_str);
 	else

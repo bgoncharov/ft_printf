@@ -6,43 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/16 19:55:42 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:20:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-void		print_params(t_format frmt_struct)
-{
-	char	*convs;
-	char	*flags;
-	int		i;
-
-	convs = CONV;
-	flags = "#0-+ ";
-	i = 0;
-	ft_putchar('%');
-	if (frmt_struct.flags)
-	{
-		while (i < 5)
-		{
-			if (1 << i && frmt_struct.flags)
-				ft_putchar(flags[i]);
-			i++;
-		}
-	}
-	if (frmt_struct.width)
-		ft_putnbr(frmt_struct.width);
-	if (frmt_struct.precision != -1)
-		{
-			ft_putchar('.');
-			ft_putnbr(frmt_struct.precision);
-		}
-	if (frmt_struct.lenght)
-		ft_putchar(frmt_struct.lenght);
-	ft_putchar(*(convs + frmt_struct.conv));
-	ft_putstr(":	");
-}
 
 int			get_conv(const char **format, t_format *frmt_struct)
 {

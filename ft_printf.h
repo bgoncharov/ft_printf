@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 11:39:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 11:08:29 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/22 20:21:06 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char				*flg_wstr(t_format *frmt, va_list args);
 char				*flg_wchar(t_format *frmt, va_list args);
 
 /* parse functions */
-static void			print_params(t_format ftm_struct);
 int					get_conv(const char **format, t_format *frmt_struct);
 void				parse_width_precis(const char **format, t_format *frmt_struct);
 void				parse_flags(const char **format, t_format *frmt_struct);
