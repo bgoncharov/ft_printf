@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 19:16:13 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 10:27:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:22:24 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,14 @@ char						*flg_pointer(t_format *frmt, va_list args)
 	int					len;
 
 	num = va_arg(args, unsigned long long);
-	len = ft_unumberlen_base(num, 16);
-	frmt->precision = len + 2;
+	if (num == 0 && frmt->precision == 0)
+		len = 0;
+	else
+		len = ft_unumberlen_base(num, 16);
+	if (frmt->precision == -1 || frmt->precision < len)
+		frmt->precision = len + 2;
+	else
+		frmt->precision += 2;
 	frmt->width = ft_max(frmt->width, frmt->precision);
 	str = ft_strinitial(frmt->width, ' ');
 	if (frmt->flags & MINUS)
