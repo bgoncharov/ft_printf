@@ -1,42 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bogoncha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/23 19:21:00 by bogoncha          #+#    #+#             */
+/*   Updated: 2019/04/23 19:22:43 by bogoncha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-char	*ft_itoa_base(long value, long base)
+static void	append_character(char *dest, char src)
 {
-	long nbr;
-	long len;
-	char *str;
-	char b[17] = "0123456789ABCDEF";
+	while (*dest)
+		dest++;
+	*dest++ = src;
+	*dest = '\0';
+}
 
-	len = 0;
-	if (value == 0)
-		return ("0");
-	nbr = value;
-	while (value)
+static void	recursive_strfill_base(char *str, long num, int base)
+{
+	if (num >= base)
+		recursive_strfill_base(str, num / base, base);
+	if (base > 10 && (num % base) > 9)
+		append_character(str, ('A' + (num % base) - 10));
+	else
+		append_character(str, ('0' + num % base));
+}
+
+char		*ft_itoa_base(int n, int base)
+{
+	char *str;
+	long num;
+
+	num = (long)(n < 0 ? (n * -1) : n);
+	if (n < 0 && base == 10)
 	{
-		value = value / base;
-		len++;
+		str = ft_strnew(ft_numlen_base(num, base) + 1);
+		if (!str)
+			return (0);
+		*str = '-';
 	}
-	if (nbr < 0 && base == 10)
+	else
 	{
-		len++;
-		str = (char *)malloc(sizeof(char) * len + 1);
-		str[0] = '-';
-		nbr = -nbr;
+		str = ft_strnew(ft_numlen_base(num, base));
+		if (!str)
+			return (0);
 	}
-	else if (nbr < 0)
-	{
-		str = (char *)malloc(sizeof(char) * len + 1);
-		nbr = -nbr;
-	}
-	else 
-		str = (char *)malloc(sizeof(char) * len + 1);
-	str[len] = '\0';
-	len--;
-	while (nbr)
-	{
-		str[len] = b[nbr % base];
-		nbr = nbr / base;
-		len--;
-	}
+	recursive_strfill_base(str, num, base);
 	return (str);
 }

@@ -6,55 +6,19 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:39:56 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/23 16:57:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:07:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-/*
-** Task:
-* 	conversions:	sSpdDioOuUxXcC
-**	must manage:	%%
-**	flags:			#0-+ (and ' ');
-**	must manage:	minimum field-width and precision
-**	flags:			hh, h, l, ll
-**
-**	.___________________________________.
-**	|conversion	|	length		|flags	|
-**	|-----------+---------------+-------|
-**	|	c		|				|		|
-**	|	s		|				|		|
-**	|	p		|				|		|
-**	|-----------+---------------+-------|
-**	|	d		| h, hh, l, ll	| 0-+s	|
-**	|	i		| h, hh, l, ll	| 0-+s	|
-**	|	o		| h, hh, l, ll	| 0-+s	|
-**	|	u		| h, hh, l, ll	| 0-+s	|
-**	|	x		| h, hh, l, ll	| 0-+s	|
-**	|	X		| h, hh, l, ll	| 0-+s	|
-**
-** Bonuses :
-**	conversions:	eE, fF, gG, aA, n
-**	flags:			*, %, L, '
-**	new flags:
-**		%b:		binary
-**		%r:		non-printable characters
-**		%k:		date in ISO format
-**	colors, fd, i td..
-*/
-
-static t_format		*initial()
+static void		initial(t_format *frmt)
 {
-	t_format	*frmt;
-
-	frmt = (t_format *)ft_memalloc(sizeof(t_format));
 	frmt->conv = 0;
 	frmt->flags = 0;
 	frmt->width = 0;
 	frmt->precision = -1;
 	frmt->lenght = 0;
-	return (frmt);
 }
 
 static char		*dispatch(int index, t_format *format_struct, va_list args)
@@ -90,7 +54,7 @@ static char		*parser(const char **format, va_list args, size_t *len)
 	char		*ret;
 	int			index;
 
-	format_struct = initial();
+	initial(&format_struct);
 	ret = 0;
 	parse_flags(format, format_struct);
 	parse_width_precis(format, format_struct);
@@ -106,7 +70,7 @@ static char		*parser(const char **format, va_list args, size_t *len)
 	return (ret);
 }
 
-size_t	create_list(t_list **lst, const char *format, va_list args)
+size_t			create_list(t_list **lst, const char *format, va_list args)
 {
 	char		*new;
 	size_t		len;
@@ -136,9 +100,9 @@ size_t	create_list(t_list **lst, const char *format, va_list args)
 
 char			*combine_list(t_list *list, int size_of_list)
 {
-	char	*newstr;
-	char	*cur;
-	t_list	*lcur;
+	char		*newstr;
+	char		*cur;
+	t_list		*lcur;
 
 	newstr = ft_strnew(size_of_list);
 	cur = newstr;

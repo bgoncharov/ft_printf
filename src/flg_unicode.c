@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 11:02:10 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 11:26:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:51:22 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 char			*flg_wstr(t_format *frmt, va_list args)
 {
-	wchar_t	*str;
-	char	*newstr;
+	wchar_t		*str;
+	char		*newstr;
 
 	str = va_arg(args, wchar_t *);
 	if (!str)
 		str = L"(null)";
 	newstr = conv_utf8_str(str);
-    frmt->width = ft_strlen(newstr);
+	frmt->width = ft_strlen(newstr);
 	return (newstr);
 }
 
 char			*flg_wchar(t_format *frmt, va_list args)
 {
-	wchar_t	c;
-	char	*newstr;
+	wchar_t		c;
+	char		*newstr;
 
 	c = va_arg(args, wchar_t);
 	newstr = conv_utf8_char(c, 0);

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 22:11:43 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/03/28 23:07:08 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:01:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	return (list);
 }
 
-t_list	*ft_lstinit(void const *content, size_t content_size)
+t_list		*ft_lstinit(void const *content, size_t content_size)
 {
-	t_list *head;
+	t_list	*head;
 
 	head = (t_list *)ft_memalloc(sizeof(t_list));
 	if (head == 0)

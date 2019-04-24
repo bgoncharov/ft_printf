@@ -6,16 +6,16 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:43:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 20:20:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:16:13 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int			get_conv(const char **format, t_format *frmt_struct)
+int					get_conv(const char **format, t_format *frmt_struct)
 {
-	const char	*flags;
-	char		*index;
+	const char		*flags;
+	char			*index;
 
 	flags = CONV;
 	if (**format && (index = ft_strchr(flags, **format)))
@@ -27,10 +27,10 @@ int			get_conv(const char **format, t_format *frmt_struct)
 	return (-1);
 }
 
-void			parse_size_flag(const char **format, t_format *frmt_struct)
+void				parse_size_flag(const char **format, t_format *frmt_struct)
 {
-	const char	*flags;
-	const char	*sub;
+	const char		*flags;
+	const char		*sub;
 
 	flags = "hHlLjz";
 	if (**format && (sub = ft_strchr(flags, **format)))
@@ -51,7 +51,8 @@ void			parse_size_flag(const char **format, t_format *frmt_struct)
 	}
 }
 
-void			parse_width_precis(const char **format, t_format *frmt_struct)
+void				parse_width_precis(const char **format,
+		t_format *frmt_struct)
 {
 	if (*format && ft_isdigit(**format))
 	{
@@ -70,7 +71,7 @@ void			parse_width_precis(const char **format, t_format *frmt_struct)
 	}
 }
 
-void			parse_flags(const char **format, t_format *frmt_struct)
+void				parse_flags(const char **format, t_format *frmt_struct)
 {
 	const char		*flags;
 	const char		*cur;

@@ -6,15 +6,15 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 22:51:34 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/17 19:44:29 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:13:28 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static unsigned long long take_num(char length, va_list args)
+static unsigned long long	take_num(char length, va_list args)
 {
-	unsigned long long num;
+	unsigned long long		num;
 
 	num = 0;
 	if (length == 0)
@@ -34,8 +34,8 @@ static unsigned long long take_num(char length, va_list args)
 	return (num);
 }
 
-static void	append_flags(char *str, t_format *frmt,
-                            unsigned long long num, int len)
+static void					append_flags(char *str, t_format *frmt,
+											unsigned long long num, int len)
 {
 	if (!(frmt->flags & MINUS))
 		str += (frmt->width - frmt->precision);
@@ -51,7 +51,7 @@ static void	append_flags(char *str, t_format *frmt,
 	}
 }
 
-static void	ft_numcpy_hex(unsigned long long num, char *str)
+static void					ft_numcpy_hex(unsigned long long num, char *str)
 {
 	if (num >= 16)
 		ft_numcpy_hex(num / 16, str - 1);
@@ -61,7 +61,8 @@ static void	ft_numcpy_hex(unsigned long long num, char *str)
 		*str = ((num % 16) + '0');
 }
 
-static char	*num_format(t_format *frmt, unsigned long long num, int len)
+static char					*num_format(t_format *frmt,
+		unsigned long long num, int len)
 {
 	if (frmt->flags & SHARP && num != 0)
 		len += 2;
@@ -84,11 +85,11 @@ static char	*num_format(t_format *frmt, unsigned long long num, int len)
 	return (ft_strinitial(frmt->width, ' '));
 }
 
-char					*flg_hex(t_format *frmt, va_list args)
+char						*flg_hex(t_format *frmt, va_list args)
 {
-	char				*new;
-	unsigned long long	num;
-    int					len;
+	char					*new;
+	unsigned long long		num;
+	int						len;
 
 	num = take_num(frmt->lenght, args);
 	if (frmt->precision == 0 && num == 0)

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:11:26 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/23 16:16:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:22:32 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 # include <string.h>
 # include <wchar.h>
 
-typedef	struct	s_fp
+typedef	struct		s_fp
 {
-	long		integral;
-	long		fraction;
-	int			len_i;
-	int			trail_zeros;
-	int			lead_zeros;
-	int			len_f;
-}				t_fp;
-#	define SIG_F (f.lead_zeros + f.len_f)
-#	define SIG_I (f.len_i + f.trail_zeros)
+	long			integral;
+	long			fraction;
+	int				len_i;
+	int				trail_zeros;
+	int				lead_zeros;
+	int				len_f;
+}					t_fp;
+# define SIG_F (f.lead_zeros + f.len_f)
+# define SIG_I (f.len_i + f.trail_zeros)
 
 int					ft_atoi(const char *str);
 char				*ft_strdup(const char *src);
@@ -93,11 +93,11 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef union	u_double
+typedef union		u_double
 {
-	double		d;
-	long		l;
-}				t_double;
+	double			d;
+	long			l;
+}					t_double;
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
@@ -114,7 +114,7 @@ int					ft_str_is_uppercase(char *str);
 char				*ft_strlowcase(char *str);
 char				*ft_strupcase(char *str);
 int					ft_size_of_word(char const *str, char c);
-char				*ft_itoa_base(int value, int base);
+char				*ft_itoa_base(int n, int base);
 size_t				ft_dstrlen(const char *str, char del);
 void				ft_lstputstr(t_list *item);
 void				ft_lstadd_tail(t_list **alst, t_list *item);

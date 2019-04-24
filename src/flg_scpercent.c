@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/22 19:37:59 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:35:47 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	add_width(int width, char **str, int left)
 {
-	int len;
-	char *new;
+	int		len;
+	char	*new;
 
 	len = ft_strlen(*str);
 	if (width > len)
@@ -30,7 +30,7 @@ static void	add_width(int width, char **str, int left)
 	}
 }
 
-static char *frmt_str(t_format *frmt, int len)
+static char	*frmt_str(t_format *frmt, int len)
 {
 	if (frmt->precision != -1)
 	{
@@ -47,10 +47,10 @@ static char *frmt_str(t_format *frmt, int len)
 	return (ft_strinitial(frmt->width, ' '));
 }
 
-char *flg_char(t_format *frmt, va_list args)
+char		*flg_char(t_format *frmt, va_list args)
 {
-	char c;
-	char *new;
+	char	c;
+	char	*new;
 
 	c = (char)va_arg(args, int);
 	if (!c)
@@ -60,11 +60,11 @@ char *flg_char(t_format *frmt, va_list args)
 	return (new);
 }
 
-char *flg_str(t_format *frmt, va_list args)
+char		*flg_str(t_format *frmt, va_list args)
 {
-	char *str;
-	char *new;
-	int len;
+	char	*str;
+	char	*new;
+	int		len;
 
 	if (frmt->lenght == 'l')
 		return (flg_wstr(frmt, args));
@@ -80,13 +80,13 @@ char *flg_str(t_format *frmt, va_list args)
 	if (frmt->flags & MINUS)
 		ft_strncpy(new, str, frmt->precision);
 	else
-		ft_strncpy(new + frmt->width - frmt->precision, str, frmt->precision);	
+		ft_strncpy(new + frmt->width - frmt->precision, str, frmt->precision);
 	return (new);
 }
 
-char *flg_percent(t_format *frmt)
+char		*flg_percent(t_format *frmt)
 {
-	char *str;
+	char	*str;
 
 	if (frmt->width < 1)
 		frmt->width = 1;
