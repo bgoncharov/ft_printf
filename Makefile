@@ -6,40 +6,35 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/04/23 18:36:24 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/04/24 11:15:44 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME :=			libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+INCLUDE_DIR :=	./includes
+L_OBJS :=		$(patsubst %.c,%.o,$(wildcard ./srcs/*.c))
+C_OBJS :=		$(patsubst %.c,%.o,$(wildcard ./srcs/ft_printf/*.c))
 
-SRC = src/ft_printf.c src/parser.c src/flg_scpercent.c src/flg_int.c main.c \
-	src/flg_pointer.c src/flg_uint.c src/flg_bin.c \
-	src/flg_hex.c src/flg_oct.c src/flg_float.c src/flg_unicode.c src/flg_scientific.c \
-	src/make_list.c
+CFLAGS +=		-Wall -Wextra -Werror -I$(INCLUDE_DIR)
+LDFLAGS +=		-L./ -lftprintf
 
-OBJS = src/ft_printf.o src/parser.o src/flg_scpercent.o src/flg_int.o main.o \
-	src/flg_pointer.o src/flg_uint.o src/flg_bin.o \
-	src/flg_hex.o src/flg_oct.o src/flg_oct.o src/flg_unicode.o src/flg_scientific.o \
-	src/make_list.o
+.PHONY:			all clean fclean re
 
 all: $(NAME)
 
-$(NAME): lib
-	$(CC) libft/libft.a $(SRC) -o test
+$(NAME): $(L_OBJS) $(C_OBJS)
+	ar rc $(NAME) $(L_OBJS) $(C_OBJS)
+	ranlib $(NAME)
 
-lib: fclean
-	make -C libft
+test: all main.o
+	@ctags -R
+	$(CC) $(CFLAGS) main.o -o test $(LDFLAGS)
 
 clean:
-	/bin/rm -rf $(OBJS)
-	make -C libft/ clean
+	@- $(RM) $(C_OBJS) $(L_OBJS) main.o
 
 fclean: clean
-	/bin/rm -rf test
-	make -C libft/ fclean
-
-retest: fclean test
+	@- $(RM) $(NAME) test
 
 re: fclean all
