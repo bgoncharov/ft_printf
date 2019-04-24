@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:39:56 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/24 11:50:30 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:22:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,29 @@ static void		initial(t_format *frmt)
 
 static char		*dispatch(int index, t_format *format_struct, va_list args)
 {
-	static char	*(*p[20])();
+	static char	*(*p[])() = {
 
-	p[0] = flg_char;
-	p[1] = flg_char;
-	p[2] = flg_str;
-	p[3] = flg_wstr;
-	p[4] = flg_percent;
-	p[5] = flg_int;
-	p[6] = flg_int;
-	p[7] = flg_int;
-	p[8] = flg_uint;
-	p[9] = flg_uint;
-	p[10] = flg_bin;
-	p[11] = flg_oct;
-	p[12] = flg_oct;
-	p[13] = flg_hex;
-	p[14] = flg_hex;
-	p[15] = flg_pointer;
-	p[16] = flg_float;
-	p[17] = flg_float;
-	p[18] = flg_scientific;
-	p[19] = flg_scientific;
+	[0] = flg_char,
+	[1] = flg_char,
+	[2] = flg_str,
+	[3] = flg_wstr,
+	[4] = flg_percent,
+	[5] = flg_int,
+	[6] = flg_int,
+	[7] = flg_int,
+	[8] = flg_uint,
+	[9] = flg_uint,
+	[10] = flg_bin,
+	[11] = flg_oct,
+	[12] = flg_oct,
+	[13] = flg_hex,
+	[14] = flg_hex,
+	[15] = flg_pointer,
+	[16] = flg_float,
+	[17] = flg_float,
+	[18] = flg_scientific,
+	[19] = flg_scientific,
+	};
 	return (p[index](format_struct, args));
 }
 
