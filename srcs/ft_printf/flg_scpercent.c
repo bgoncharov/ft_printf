@@ -6,36 +6,20 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 13:07:57 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/24 11:34:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/24 21:07:47 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	add_width(int width, char **str, int left)
-{
-	int		len;
-	char	*new;
-
-	len = ft_strlen(*str);
-	if (width > len)
-	{
-		new = ft_memset(ft_strnew(width), ' ', width);
-		if (left)
-			ft_strncpy(new, *str, len);
-		else
-			ft_strncpy(new + (width - len), *str, len);
-		ft_strdel(str);
-		*str = new;
-	}
-}
-
-static char	*frmt_str(t_format *frmt, int len)
+static char	*frmt_str(t_format *frmt, char *str, int len)
 {
 	if (frmt->precision != -1)
 	{
 		if (frmt->precision > len)
 			frmt->precision = len;
+		else if (frmt->precision < len && !str)
+			frmt->precision = 0;
 		if (frmt->precision > frmt->width)
 			frmt->width = frmt->precision;
 	}
@@ -53,10 +37,13 @@ char		*flg_char(t_format *frmt, va_list args)
 	char	*new;
 
 	c = (char)va_arg(args, int);
-	if (!c)
-		new = ft_strdup("^@");
-	new = ft_strndup(&c, 1);
-	add_width(frmt->width, &new, (frmt->flags & MINUS));
+	if (frmt->width < 1)
+		frmt->width = 1;
+	new = ft_strinitial(frmt->width, ' ');
+	if (frmt->flags & MINUS)
+		new[0] = c;
+	else
+		new[frmt->width - 1] = c;
 	return (new);
 }
 
@@ -70,13 +57,12 @@ char		*flg_str(t_format *frmt, va_list args)
 		return (flg_wstr(frmt, args));
 	str = va_arg(args, char *);
 	if (!str)
-	{
-		str = "(null)";
 		len = 6;
-	}
 	else
 		len = ft_strlen(str);
-	new = frmt_str(frmt, len);
+	new = frmt_str(frmt, str, len);
+	if (!str)
+		str = "(null)";
 	if (frmt->flags & MINUS)
 		ft_strncpy(new, str, frmt->precision);
 	else

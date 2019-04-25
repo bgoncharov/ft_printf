@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 17:17:56 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/24 11:34:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:33:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void					ft_numcpy_oct(unsigned long long num, char *str)
 {
 	if (num >= 8)
 		ft_numcpy_oct(num / 8, str - 1);
-	*str = (num % 8 + '0');
+	*str = ((num % 8) + '0');
 }
 
 static char					*num_format(t_format *frmt,
@@ -93,7 +93,11 @@ char						*flg_oct(t_format *frmt, va_list args)
 
 	num = take_num(frmt->conv, frmt->lenght, args);
 	if (frmt->precision == 0 && num == 0)
+	{
 		len = 0;
+		if (frmt->flags & SHARP)
+			++frmt->precision;
+	}
 	else
 		len = ft_numberlen_base(num, 8);
 	new = num_format(frmt, num, len);

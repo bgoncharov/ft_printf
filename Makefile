@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 00:00:17 by bogoncha          #+#    #+#              #
-#    Updated: 2019/04/24 11:15:44 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/04/24 15:46:31 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ $(NAME): $(L_OBJS) $(C_OBJS)
 	ranlib $(NAME)
 
 test: all main.o
-	@ctags -R
 	$(CC) $(CFLAGS) main.o -o test $(LDFLAGS)
 
 clean:

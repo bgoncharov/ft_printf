@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:46:45 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/04/24 11:34:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:18:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static long long	take_num(char conv, char length, va_list args)
 	else if (length == 'L')
 		num = va_arg(args, long long);
 	else if (length == 'h')
-		num = va_arg(args, int);
+		num = (short)va_arg(args, int);
 	else if (length == 'H')
-		num = va_arg(args, int);
+		num = (char)va_arg(args, int);
 	else if (length == 'j')
 		num = va_arg(args, long long);
 	else if (length == 'z')

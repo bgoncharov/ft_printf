@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include "ft_printf.h"
 #include <string.h>
 #include <stdint.h>
@@ -641,6 +641,124 @@ int		main(void)
 	ft_printf("%hhd\n", 128);
 	ft_printf("%ld\n", 2147483648);
 	ft_printf("%lld\n", 9223372036854775807);
+	
+
+	ft_printf("%f|%-f|%+f|% f|%#f|%0f\n", -0., -0., -0., -0., -0., -0.);
+	printf("%f|%-f|%+f|% f|%#f|%0f", -0., -0., -0., -0., -0., -0.);
 	*/
+
+	//Eval
+	ft_printf("|%s|\n", 0);
+	ft_printf("|%10s|\n", 0);
+	ft_printf("|%10.2s|\n", 0);
+	ft_printf("|%2.10s|\n", 0);
+	ft_printf("|%.3s|\n", 0);
+	ft_printf("|%.6s|\n", 0);
+	ft_printf("|%10.2s|\n", "(null)");
+	ft_printf("|%.3s|\n", "(null)");
+	ft_printf("|%.6s|\n", "(null)");
+	ft_putchar('\n');
+	printf("|%s|\n", (char *)0);
+	printf("|%10s|\n", (char *)0);
+	printf("|%10.2s|\n", (char *)0);
+	printf("|%2.10s|\n", (char *)0);
+	printf("|%.3s|\n", (char *)0);
+	printf("|%.6s|\n", (char *)0);
+	printf("|%10.2s|\n", (char *)0);
+	printf("|%.3s|\n", (char *)0);
+	printf("|%.6s|\n", (char *)0);
+
+
+	char	c = 0;
+	char	*str = "pouet";
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%p\n", (void *)0);
+	ft_printf("%p\n", &c);
+	ft_printf("%p\n", str);
+	ft_printf("%p\n", &str);
+	str = NULL;
+	ft_printf("%p\n", str);
+	str = ft_strdup("Coucou les haricots !");
+	ft_printf("%p\n", str);
+
+	str = "pouet";
+
+	printf("\nprintf:\n");
+	printf("%p\n", (void *)0);
+	printf("%p\n", &c);
+	printf("%p\n", str);
+	printf("%p\n", &str);
+	str = NULL;
+	printf("%p\n", str);
+	str = ft_strdup("Coucou les haricots !");
+	printf("%p\n", str);
+
+	int i = 99;
+	ft_putchar('\n');
+	ft_printf("i: %d\n", i);
+	printf("i: %d\n", i);
+
+	ft_printf("%%\n");
+	printf("%%\n");
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 0, 0, 0, 0, 0);
+	ft_printf("%o\t%#o\t%.o\t%#.o\t%#6.4o\n", 7, 7, 7, 7, 7);
+	ft_printf("\nprintf:\n");
+	printf("%o\t%#o\t%.o\t%#.o\t%#.4o\n", 0, 0, 0, 0, 0);
+	printf("%o\t%#o\t%.o\t%#.o\t%#6.4o\n", 7, 7, 7, 7, 7);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%o\n", 255);
+	ft_printf("\nprintf:\n");
+	printf("%o\n", 255);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%u\n", -255);
+	ft_printf("\nprintf:\n");
+	printf("%u\n", -255);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%x\n", 255);
+	ft_printf("%X\n", 255);
+	printf("\nprintf:\n");
+	printf("%x\n", 255);
+	printf("%X\n", 255);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("|%c|\n", 0);
+	ft_printf("|%10c|\n", 0);
+	printf("\nprintf:\n");
+	printf("|%c|\n", 0);
+	printf("|%10c|\n", 0);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("|%i|%c|\n", 10, 0);
+	printf("\nprintf:\n");
+	ft_printf("|%c|%i|\n", 0, 10);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%#x\n", 255);
+	ft_printf("|%+07.d|, 0\n", 0);
+	ft_printf("-10s:      |%-10s|\n", "hello");
+	ft_printf("%012.6d\n", 224);
+	ft_printf("|% 07.d|, 0\n", 0);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%hd\n", 128);
+	ft_printf("%hhd\n", 128);
+	ft_printf("%ld\n", 2147483648);
+	ft_printf("%lld\n", 9223372036854775807);
+
+	ft_printf("\nft_printf:\n");
+	ft_printf("%.lf|%-.lf|%+.lf|% .lf|%#.lf|%0.lf", 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849);
+	ft_printf("%.8lf|%-.8lf|%+.8lf|% .8lf|%#.8lf|%0.8lf", 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849);
+	ft_printf("%+8.14Lf|%+ 8.14Lf|%+-8.14Lf|%+#8.14Lf|%+08.14Lf|%+ -#08.14Lf", 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L);
+	printf("\nprintf:\n");
+	printf("%.lf|%-.lf|%+.lf|% .lf|%#.lf|%0.lf", 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849);
+	printf("%.8lf|%-.8lf|%+.8lf|% .8lf|%#.8lf|%0.8lf", 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849, 38546.5849);
+	//printf("%+8.14Lf|%+ 8.14Lf|%+-8.14Lf|%+#8.14Lf|%+08.14Lf|%+ -#08.14Lf", 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L, 12.847e451L);
+
 	return (0);
 }
